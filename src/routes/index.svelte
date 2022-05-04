@@ -1,4 +1,6 @@
 <script lang="ts">
+
+  import Backdrop from "$lib/Backdrop.svelte"
   interface Project {
     name: string;
     description: string;
@@ -42,7 +44,8 @@
   ]
 </script>
 
-<div class="font-primary w-screen h-screen bg-gradient-to-t from-rose-100 to-teal-100 flex justify-center items-center overflow-x-visible">
+<Backdrop/>
+<div class="font-primary w-screen h-screen  flex justify-center items-center overflow-x-visible">
   <div class="drop-shadow-lg">
     <h1 class="text-3xl sm:text-4xl md:text-6xl">
       <span class="hover:animate-wiggle inline-block">👋</span> Hello, I'm Tristan!
