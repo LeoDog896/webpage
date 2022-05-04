@@ -14,7 +14,7 @@ const config = {
 	kit: {
 		adapter: adapter(),
     paths: {
-      base: "/website"
+      base: "/webpage"
     },
     prerender: {
       default: true
