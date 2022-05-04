@@ -12,7 +12,13 @@ const config = {
 	],
 
 	kit: {
-		adapter: adapter()
+		adapter: adapter(),
+    paths: {
+      base: "/website"
+    },
+    prerender: {
+      default: true
+    }
 	}
 };
 
