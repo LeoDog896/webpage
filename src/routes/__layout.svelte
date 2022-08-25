@@ -6,7 +6,7 @@
     href: string;
   }
 
-  const root = "/webpage/"
+  const root = "/"
 
   const nav: NavLink[] = [{
     name: "home",
