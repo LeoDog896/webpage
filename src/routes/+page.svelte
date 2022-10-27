@@ -18,12 +18,6 @@
       color: "#915f29"
     },
     {
-      name: "reaction",
-      description: "A simple reaction timer",
-      link: "https://leodog896.github.io/reaction",
-      github: "https://github.com/LeoDog896/reaction"
-    },
-    {
       name: "scannable",
       description: "A QR code generation library",
       link: "https://leodog896.github.io/scannable",
@@ -34,12 +28,6 @@
       description: "A conspiracy maker",
       link: "https://leodog896.github.io/conspirasea",
       github: "https://github.com/LeoDog896/conspirasea"
-    },
-    {
-      name: "the things we carry",
-      description: "an english creative project for the book <i>The Things They Carried</i> by Tim O' Brien.",
-      link: "https://leodog896.github.io/the-things-we-carry",
-      github: "https://github.com/LeoDog896/the-things-we-carry"
     }
   ]
 </script>
