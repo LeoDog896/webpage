@@ -49,13 +49,14 @@
   <h3 class="text-center text-xl text-gray-600 mb-12">(that I like)</h3>
   <div class="flex flex-row flex-wrap place-content-around w-full">
     {#each projects as project}
-      <div
+      <a
         class="rounded-sm shadow-md w-full basis-1/2 bg-gray-200 m-4 p-4 flex-none text-black bg-right hover:bg-left transition-[background-position_1s] bg-[length:200%_200%]"
         style="background-image: linear-gradient(to right, #bbb 50%, #ddd 0);"
+        href={project.link}
       >
-        <h1>{project.name} (<a class="text-sky-700 underline" href={project.github}>github</a> | <a class="text-sky-700 underline" href={project.link}>link</a>)</h1>
+        <h1>{project.name} (<a class="text-sky-700 underline" href={project.github}>github</a>)</h1>
         <p class="text-black">{@html project.description}</p>
-      </div>
+      </a>
     {/each}
   </div>
 </div>
