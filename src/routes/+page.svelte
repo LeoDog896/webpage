@@ -12,7 +12,7 @@
   const projects: Project[] = [
     {
       name: "duckshow",
-      description: "A calming duck (and other animals) background slideshow",
+      description: "A calming infinite animal slideshow",
       link: "https://leodog896.github.io/duckshow",
       github: "https://github.com/LeoDog896/duckshow",
       color: "#915f29"
