@@ -24,7 +24,7 @@
 <div class="m-8 mt-24 mr-16">
 	<h1 class="text-xl font-bold">BLOG</h1>
 	{#if blogs.length === 0}
-		<p>sorry, nothing here yet 😛. this will have a feed of articles</p>
+		<p>sorry, nothing here yet 😛. this will have a feed of articles (maybe?)</p>
 	{:else}
 		{#each blogs as blog}
 			<div>

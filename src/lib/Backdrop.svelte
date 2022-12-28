@@ -10,6 +10,6 @@
 		width: 100%;
 		height: 100%;
 		z-index: -1;
-		background: linear-gradient(#c8a83d, #8dc9f7);
+		background: #F9B3D1;
 	}
 </style>
