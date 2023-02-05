@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Footer from "$lib/Footer.svelte";
+
 	enum BlogType {
 		MEDIUM = 'Medium',
 		DEVTO = 'dev.to',
@@ -34,3 +36,5 @@
 		<p>that's the end! sorry, I dont write much.</p>
 	{/if}
 </div>
+
+<Footer></Footer>
