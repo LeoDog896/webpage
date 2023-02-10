@@ -6,6 +6,7 @@
 
 	interface DescriptiveLink extends Link {
 		description: string;
+		type: "project" | "security" | "article";
 	}
 
 	const links: Link[] = [
@@ -45,7 +46,20 @@
 		{
 			name: "CVE-2023-22499",
 			description: "my first reported security vulnerability! hope to find more.",
-			href: "https://github.com/denoland/deno/security/advisories/GHSA-mc52-jpm2-cqh6"
+			href: "https://github.com/denoland/deno/security/advisories/GHSA-mc52-jpm2-cqh6",
+			type: "security"
+		},
+		{
+			name: "deno-outdated",
+			description: "a tool to check for outdated dependencies in your deno project",
+			href: "https://github.com/LeoDog896/deno-outdated",
+			type: "project"
+		},
+		{
+			name: "how to make a lichess bot",
+			description: "i am very bad at chess. thus, what better to do than make a bot worse than me.",
+			href: "/article/lichess-bot",
+			type: "article"
 		}
 	]
 </script>
@@ -66,9 +80,9 @@
 	{/each}
 </p>
 
-{#each stuff as { name, description, href }}
+{#each stuff as { name, description, href, type }}
 	<div class="item">
-		<a {href}>
+		<a {href} class="{`link-${type}`}">
 			<h2>{name}</h2>
 		</a>
 		<p><i>{description}</i></p>
@@ -98,6 +112,20 @@
 
 		&:not(:last-child) {
 			margin-bottom: 10px;
+		}
+
+		a {
+			&.link-project {
+				color: rgb(11, 92, 222);
+			}
+
+			&.link-security {
+				color: rgb(138, 0, 0);
+			}
+
+			&.link-article {
+				color: rgb(154, 16, 219);
+			}
 		}
 	}
 </style>
