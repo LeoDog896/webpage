@@ -42,7 +42,7 @@
 	const stuff: DescriptiveLink[] = [
 		{
 			name: 'CVE-2023-22499',
-			description: 'my first reported security vulnerability! hope to find more.',
+			description: 'my first reported security vulnerability!',
 			href: 'https://github.com/denoland/deno/security/advisories/GHSA-mc52-jpm2-cqh6',
 			type: 'security'
 		},
