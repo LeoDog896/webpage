@@ -30,17 +30,14 @@
 
 	const favoriteEmojis = ['🌼', '✨', '🍚'];
 
-	const randomEmoji = (exceptForIndex = -1): string => {
-		const index = Math.floor(Math.random() * favoriteEmojis.length);
-		if (index === exceptForIndex) return randomEmoji(exceptForIndex);
-		return favoriteEmojis[index];
-	};
-
-	const refreshEmoji = () => {
-		currentEmoji = randomEmoji(favoriteEmojis.indexOf(currentEmoji));
-	};
+	const randomEmoji = () => favoriteEmojis[Math.floor(Math.random() * favoriteEmojis.length)];
 
 	let currentEmoji = randomEmoji();
+
+	const cycleEmoji = () => {
+		const emojiIndex = favoriteEmojis.indexOf(currentEmoji);
+		currentEmoji = favoriteEmojis[(emojiIndex + 1) % favoriteEmojis.length];
+	};
 
 	const stuff: DescriptiveLink[] = [
 		{
@@ -66,7 +63,7 @@
 
 <h1>
 	leo
-	<button class="text-like" on:click={refreshEmoji} on:keypress={refreshEmoji}
+	<button class="text-like" on:click={cycleEmoji} on:keypress={cycleEmoji}
 		>{currentEmoji}</button
 	>
 </h1>
