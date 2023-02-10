@@ -47,12 +47,6 @@
 			type: 'security'
 		},
 		{
-			name: 'how to make a lichess bot',
-			description: 'preface: i am very bad at chess.',
-			href: '/article/lichess-bot',
-			type: 'article'
-		},
-		{
 			name: 'deno-outdated',
 			description: 'a tool to check for outdated dependencies in your deno project',
 			href: 'https://github.com/LeoDog896/deno-outdated',
