@@ -1,4 +1,6 @@
 <script lang="ts">
+	import EmojiSelector from "$lib/EmojiSelector.svelte";
+
 	interface Link {
 		name: string;
 		href: string;
@@ -28,17 +30,6 @@
 		}
 	];
 
-	const favoriteEmojis = ['🌼', '✨', '🍚'];
-
-	const randomEmoji = () => favoriteEmojis[Math.floor(Math.random() * favoriteEmojis.length)];
-
-	let currentEmoji = randomEmoji();
-
-	const cycleEmoji = () => {
-		const emojiIndex = favoriteEmojis.indexOf(currentEmoji);
-		currentEmoji = favoriteEmojis[(emojiIndex + 1) % favoriteEmojis.length];
-	};
-
 	const stuff: DescriptiveLink[] = [
 		{
 			name: "Godot + Jigsaws",
@@ -63,9 +54,7 @@
 
 <h1>
 	leo
-	<button class="text-like" on:click={cycleEmoji} on:keypress={cycleEmoji}
-		>{currentEmoji}</button
-	>
+	<EmojiSelector emojis={['🌼', '✨', '🍚']}></EmojiSelector>
 </h1>
 <p>i make & break things on the internet</p>
 <p>
@@ -87,14 +76,6 @@
 {/each}
 
 <style lang="scss">
-	button.text-like {
-		background: none;
-		border: none;
-		padding: 0;
-		font: inherit;
-		cursor: pointer;
-	}
-
 	.item {
 		border: 1px dotted #aaa;
 		padding: 10px;

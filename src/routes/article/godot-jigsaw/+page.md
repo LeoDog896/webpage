@@ -1,6 +1,7 @@
 ---
 title: making a jigsaw puzzle in godot
 description: a guide on how to make a jigsaw puzzle in godot
+emojis: 🧩 📘 📖
 date: 2023-02-18
 ---
 
@@ -9,8 +10,6 @@ date: 2023-02-18
 	import Ferret from "./ferret.jpg"
 	import FinalPicture from "./final-picture.png"
 </script>
-
-# making a jigsaw puzzle in godot
 
 This problem confused me for a bit, but luckily, godot makes splitting a puzzle piece pretty simple.
 
