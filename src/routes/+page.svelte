@@ -41,6 +41,12 @@
 
 	const stuff: DescriptiveLink[] = [
 		{
+			name: "Godot + Jigsaws",
+			description: "setting up a jigsaw puzzle game in Godot",
+			href: "article/godot-jigsaw/",
+			type: "article" 
+		},
+		{
 			name: 'CVE-2023-22499',
 			description: 'my first reported security vulnerability!',
 			href: 'https://github.com/denoland/deno/security/advisories/GHSA-mc52-jpm2-cqh6',
