@@ -1,3 +1,9 @@
+---
+title: making a jigsaw puzzle in godot
+description: a guide on how to make a jigsaw puzzle in godot
+date: 2023-02-18
+---
+
 <script>
 	import FailedRowCol from "./failed-row-col.png"
 	import Ferret from "./ferret.jpg"

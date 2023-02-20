@@ -8,7 +8,7 @@
 
 <style lang="scss">
   .back {
-	display: block;
-	margin: 10px 0;
+    display: block;
+    margin: 10px 0;
   }
 </style>
