@@ -3,6 +3,7 @@ title: making a jigsaw puzzle in godot
 description: a guide on how to make a jigsaw puzzle in godot
 emojis: 🧩 📘 📖
 date: 2023-02-18
+slug: godot-jigsaw
 ---
 
 <script>

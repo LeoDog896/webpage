@@ -1,5 +1,8 @@
 <script lang="ts">
 	import EmojiSelector from '$lib/EmojiSelector.svelte';
+	import { filename } from '$lib/filename';
+
+	$filename = "/src/routes/+page.svelte"
 
 	interface Link {
 		name: string;

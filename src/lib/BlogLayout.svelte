@@ -1,5 +1,6 @@
 <script>
 	import EmojiSelector from './EmojiSelector.svelte';
+	import { filename } from '$lib/filename';
 	// https://github.com/pngwn/MDsveX/issues/485
 
 	/** @type {string} */
@@ -10,6 +11,11 @@
 
 	/** @type {string} */
 	export let emojis;
+
+	/** @type {string} */
+	export let slug;
+
+	$filename = `/src/routes/article/${slug}/+page.md`
 </script>
 
 <svelte:head>
