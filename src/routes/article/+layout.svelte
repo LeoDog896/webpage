@@ -1,14 +1,14 @@
 <svelte:head>
-  <meta name="author" content="LeoDog896" />
+	<meta name="author" content="LeoDog896" />
 </svelte:head>
 
 <a href="/" class="back">back</a>
 
-<slot/>
+<slot />
 
 <style lang="scss">
-  .back {
-    display: block;
-    margin: 10px 0;
-  }
+	.back {
+		display: block;
+		margin: 10px 0;
+	}
 </style>

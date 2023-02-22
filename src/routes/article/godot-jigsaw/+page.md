@@ -68,18 +68,18 @@ func _ready():
 		# from the parent to keep it isolated
 		piece.rows = rows
 		piece.cols = cols
-		
+
 		piece.row = n / cols
 		piece.col = n % cols
-		
+
 		piece.texture = texture
-		
+
 		var image_size := Vector2(texture.get_width(), texture.get_height())
-		
+
 		piece.piece_scale = image_size / Vector2(cols, rows) * scale
-		
+
 		piece.position = (piece.piece_scale * 2 * Vector2(piece.col, piece.row)) - (image_size * scale)
-		
+
 		add_child(piece)
 ```
 
@@ -100,7 +100,7 @@ func _reverse_hinge(hinge: int) -> int:
 
 func _ready():
 	var pieces: Array = []
-	
+
 	for n in rows * cols:
 		var piece := puzzle_piece.instance()
 
@@ -108,31 +108,31 @@ func _ready():
 		# from the parent to keep it isolated
 		piece.rows = rows
 		piece.cols = cols
-		
+
 		piece.row = n / cols
 		piece.col = n % cols
-		
+
 		piece.texture = texture
-		
+
 		var neighbors := {
 			top = null if piece.row == 0 else pieces[n - cols],
 			left = null if piece.col == 0 else pieces[n - 1],
 		}
-		
+
 		var image_size := Vector2(texture.get_width(), texture.get_height())
-		
+
 		piece.piece_scale = image_size / Vector2(cols, rows) * scale
-		
+
 		# we don't use a dictionary here since different values gives better editing in the editor UI
 		piece.top_hinge = 2 if neighbors.top == null else _reverse_hinge(neighbors.top.bottom_hinge)
 		piece.left_hinge = 2 if neighbors.left == null else _reverse_hinge(neighbors.left.right_hinge)
 		piece.right_hinge = 2 if piece.col == cols - 1 else randi() % 2
 		piece.bottom_hinge = 2 if piece.row == rows - 1 else randi() % 2
-		
+
 		piece.position = (piece.piece_scale * 2 * Vector2(piece.col, piece.row)) - (image_size * scale)
-		
+
 		pieces.append(piece)
-	
+
 	for piece in pieces:
 		add_child(piece)
 ```
@@ -171,14 +171,14 @@ next, we can begin generating the hinge. I'll be using rectangular hinges, but t
 ```gdscript
 func hinge(type: int, direction: Vector2) -> PoolVector2Array:
 	# this is technically a "right hinge", so we can rotate it to be whatever hinge we want
-	
+
 	var angle := direction.angle()
 	var pool = PoolVector2Array()
-	
+
 	# because puzzle pieces can be oriented differently we need to swap width and height depending on the direction
 	var current_scale := piece_scale if direction.y == 0 else Vector2(piece_scale.y, piece_scale.x)
 	pool.append(current_scale.rotated(angle))
-	
+
 	# since our puzzle piece is around (0, 0), we can use current_scale / 4 to define the hinge boundaries
 	if type != HingeState.NONE:
 		pool.append_array([
@@ -187,7 +187,7 @@ func hinge(type: int, direction: Vector2) -> PoolVector2Array:
 			Vector2(current_scale.x + current_scale.x / 2 * sign(type - 0.5), -current_scale.y / 4).rotated(angle),
 			Vector2(current_scale.x, -current_scale.y / 4).rotated(angle),
 		])
-	
+
 	return pool
 ```
 
@@ -208,23 +208,23 @@ and finally, we can map each vertex to a UV coordinate so we can use the texture
 ```gdscript
 func _ready() -> void:
 	...
-	
+
 	# we keep track of our own UV array since we can't append to it directly (the getter returns a clone)
 	var local_uv := []
-	
+
 	var image_width: int = texture.get_width() / cols
 	var image_height: int = texture.get_height() / rows
-	
+
 	for vertex in polygon:
 		var normalized_vertex: Vector2 = (vertex / (piece_scale)) * (Vector2(image_width, image_height) / 2)
 		local_uv.append(
-			normalized_vertex 
+			normalized_vertex
 			+ Vector2(
 				image_width / 2 + (image_width * col),
 				image_height / 2 + (image_height * row)
 			)
 		)
-	
+
 	uv = local_uv
 ```
 
@@ -254,14 +254,14 @@ export var piece_scale: Vector2
 
 func hinge(type: int, direction: Vector2) -> PoolVector2Array:
 	# this is technically a "right hinge", so we can rotate it to be whatever hinge we want
-	
+
 	var angle := direction.angle()
 	var pool = PoolVector2Array()
-	
+
 	# because puzzle pieces can be oriented differently we need to swap width and height depending on the direction
 	var current_scale := piece_scale if direction.y == 0 else Vector2(piece_scale.y, piece_scale.x)
 	pool.append(current_scale.rotated(angle))
-	
+
 	# since our puzzle piece is around (0, 0), we can use current_scale / 4 to define the hinge boundaries
 	if type != HingeState.NONE:
 		pool.append_array([
@@ -270,7 +270,7 @@ func hinge(type: int, direction: Vector2) -> PoolVector2Array:
 			Vector2(current_scale.x + current_scale.x / 2 * sign(type - 0.5), -current_scale.y / 4).rotated(angle),
 			Vector2(current_scale.x, -current_scale.y / 4).rotated(angle),
 		])
-	
+
 	return pool
 
 func _ready() -> void:
@@ -280,23 +280,23 @@ func _ready() -> void:
 		+ hinge(left_hinge, Vector2.LEFT)
 		+ hinge(bottom_hinge, Vector2.DOWN)
 	)
-	
+
 	# we keep track of our own UV array since we can't append to it directly (the getter returns a clone)
 	var local_uv := []
-	
+
 	var image_width: int = texture.get_width() / cols
 	var image_height: int = texture.get_height() / rows
-	
+
 	for vertex in polygon:
 		var normalized_vertex: Vector2 = (vertex / (piece_scale)) * (Vector2(image_width, image_height) / 2)
 		local_uv.append(
-			normalized_vertex 
+			normalized_vertex
 			+ Vector2(
 				image_width / 2 + (image_width * col),
 				image_height / 2 + (image_height * row)
 			)
 		)
-	
+
 	uv = local_uv
 ```
 
@@ -306,15 +306,14 @@ and there you have it! To demonstrate, I've changed the `piece.position = ` sett
 
 ## failed attempts
 
-At first, I tried using an [AtlasTexture](https://docs.godotengine.org/en/stable/classes/class_atlastexture.html?highlight=AtlasTexture), but that only splits images into squares, not into arbitrary shapes. 
+At first, I tried using an [AtlasTexture](https://docs.godotengine.org/en/stable/classes/class_atlastexture.html?highlight=AtlasTexture), but that only splits images into squares, not into arbitrary shapes.
 
 I also tried using a [Sprite](https://docs.godotengine.org/en/stable/classes/class_sprite.html) with a [Polygon2D](https://docs.godotengine.org/en/stable/classes/class_polygon2d.html) as a mask, but the solution for that is so convoluted that I attempted to find a better way before that happened.
 
 When I was testing out the main solution, I made the inadvertent assumption that the origin `(0, 0)` for the texture was on the bottom left:
 
-
 <img src={FailedRowCol} alt="Deformed ferret puzzle"/>
 
 ### hell in non-square images
 
-my original code for another game project involved only square images - when I went to adapt it to non-square images, I quickly realized I was using width and height interchangeably, *everywhere*, so I spent (give or take) 2 hours trying to figure out why the puzzle pieces were all over the place.
+my original code for another game project involved only square images - when I went to adapt it to non-square images, I quickly realized I was using width and height interchangeably, _everywhere_, so I spent (give or take) 2 hours trying to figure out why the puzzle pieces were all over the place.

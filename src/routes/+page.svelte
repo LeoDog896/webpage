@@ -1,5 +1,5 @@
 <script lang="ts">
-	import EmojiSelector from "$lib/EmojiSelector.svelte";
+	import EmojiSelector from '$lib/EmojiSelector.svelte';
 
 	interface Link {
 		name: string;
@@ -32,10 +32,10 @@
 
 	const stuff: DescriptiveLink[] = [
 		{
-			name: "Godot + Jigsaws",
-			description: "setting up a jigsaw puzzle game in Godot",
-			href: "article/godot-jigsaw/",
-			type: "article" 
+			name: 'Godot + Jigsaws',
+			description: 'setting up a jigsaw puzzle game in Godot',
+			href: 'article/godot-jigsaw/',
+			type: 'article'
 		},
 		{
 			name: 'CVE-2023-22499',
@@ -48,13 +48,13 @@
 			description: 'a tool to check for outdated dependencies in your deno project',
 			href: 'https://github.com/LeoDog896/deno-outdated',
 			type: 'project'
-		},
+		}
 	];
 </script>
 
 <h1>
 	leo
-	<EmojiSelector emojis={['🌼', '✨', '🍚']}></EmojiSelector>
+	<EmojiSelector emojis={['🌼', '✨', '🍚']} />
 </h1>
 <p>making && breaking things on the internet</p>
 <p>

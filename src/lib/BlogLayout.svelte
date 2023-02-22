@@ -1,15 +1,15 @@
 <script>
-	import EmojiSelector from "./EmojiSelector.svelte";
+	import EmojiSelector from './EmojiSelector.svelte';
 	// https://github.com/pngwn/MDsveX/issues/485
 
 	/** @type {string} */
-	export let title
+	export let title;
 
 	/** @type {string} */
-	export let description
+	export let description;
 
 	/** @type {string} */
-	export let emojis
+	export let emojis;
 </script>
 
 <svelte:head>
@@ -17,6 +17,6 @@
 	<meta name="description" content={description} />
 </svelte:head>
 
-<h1>{title} <EmojiSelector emojis={emojis.split(" ")}></EmojiSelector></h1>
+<h1>{title} <EmojiSelector emojis={emojis.split(' ')} /></h1>
 
-<slot/>
+<slot />

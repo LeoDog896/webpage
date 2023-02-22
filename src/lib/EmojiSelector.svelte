@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let emojis: string[]
+	export let emojis: string[];
 
 	const randomEmoji = () => emojis[Math.floor(Math.random() * emojis.length)];
 

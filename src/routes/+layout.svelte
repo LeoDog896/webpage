@@ -10,6 +10,8 @@
 
 <slot />
 
-<i>this page is open source. found a typo? <a 
-	href="https://github.com/LeoDog896/webpage/blob/main{filename}"
->edit it!</a></i>
+<i
+	>this page is open source. found a typo? <a
+		href="https://github.com/LeoDog896/webpage/blob/main{filename}">edit it!</a
+	></i
+>
