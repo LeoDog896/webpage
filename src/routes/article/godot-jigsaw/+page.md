@@ -6,12 +6,6 @@ date: 2023-02-18
 slug: godot-jigsaw
 ---
 
-<script>
-	import FailedRowCol from "./failed-row-col.png"
-	import Ferret from "./ferret.jpg"
-	import FinalPicture from "./final-picture.png"
-</script>
-
 This problem confused me for a bit, but luckily, godot makes splitting a puzzle piece pretty simple.
 
 > note: for simplicity, I'll be using rectangular pegs, but the same principles apply to any shape. If you want to make a PR to the example project demonstrating a different shape, I'd be happy to merge it.
@@ -20,16 +14,16 @@ You can find the entire project [here (LeoDog896/godot-jigsaw)](https://github.c
 
 I'll be using this silly ferret image:
 
-<img src={Ferret} alt="ferret yawning on a blue blanket" />
+![ferret yawning on a blue blanket](/godot-jigsaw/ferret.jpg)
 
 ## layout
 
 We'll have two scenes for the library, and one for demonstration:
 
-- Main.tscn
-- puzzle/
-  - Puzzle.tscn - this will split the image into various instances of PuzzlePiece.tscn
-  - PuzzlePiece.tscn - the actual puzzle piece
+- `Main.tscn`
+- `puzzle/`
+  - `Puzzle.tscn` - this will split the image into various instances of PuzzlePiece.tscn
+  - `PuzzlePiece.tscn` - the actual puzzle piece
 
 Godot's [Polygon2D](https://docs.godotengine.org/en/stable/classes/class_polygon2d.html) has a [texture](https://docs.godotengine.org/en/stable/classes/class_polygon2d.html#class-polygon2d-property-texture) property that is usually used for UV mapping, but we can use it to split the image into pieces.
 
@@ -303,7 +297,8 @@ func _ready() -> void:
 
 and there you have it! To demonstrate, I've changed the `piece.position = ` setter to multiply by 3 so you can see each individual jigsaw piece:
 
-<img src={FinalPicture} alt="The final puzzle picture split into different pieces."/>
+
+![The final puzzle picture split into different pieces.](/godot-jigsaw/final-picture.png)
 
 ## failed attempts
 
@@ -313,7 +308,7 @@ I also tried using a [Sprite](https://docs.godotengine.org/en/stable/classes/cla
 
 When I was testing out the main solution, I made the inadvertent assumption that the origin `(0, 0)` for the texture was on the bottom left:
 
-<img src={FailedRowCol} alt="Deformed ferret puzzle"/>
+![Deformed ferret puzzle](/godot-jigsaw/failed-row-col.png)
 
 ### hell in non-square images
 

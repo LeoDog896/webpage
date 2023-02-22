@@ -37,20 +37,18 @@
 
 <header>
 	<h1>
-		<div>
-			<EmojiSelector style="margin: 0 0.5rem;" emojis={['🌼', '✨', '🍚']} />
-			<a class="title" href="/">leo</a>
-		</div>
-		<span class="subtitle">making <span class="and">&&</span> breaking tech</span>
-
-		<span class="icons">
-			{#each links as { icon, href, label }, i}
-				<a aria-label={label} class="icon" style="--rotate: {i * 4 - (links.length - 1) * 2}deg;" {href}>
-					<svelte:component this={icon} />
-				</a>
-			{/each}
-		</span>
+		<EmojiSelector style="margin: 0 0.5rem;" emojis={['🌼', '✨', '🍚']} />
+		<a class="title" href="/">leo</a>
 	</h1>
+	<h2>making <span class="and">&&</span> breaking tech</h2>
+
+	<div class="icons">
+		{#each links as { icon, href, label }, i}
+			<a aria-label={label} class="icon" style="--rotate: {i * 4 - (links.length - 1) * 2}deg;" {href}>
+				<svelte:component this={icon} />
+			</a>
+		{/each}
+	</div>
 </header>
 
 <style lang="scss">
@@ -68,6 +66,10 @@
 	.icon {
 		transition: transform 0.2s ease-in-out;
 		transform-origin: 50% 100%;
+		width: 25px;
+		height: 25px;
+		margin-right: 10px;
+		display: inline-block;
 
 		&:hover {
 			opacity: 0.5;
@@ -80,9 +82,11 @@
 		text-decoration: none;
 	}
 
-	h1 {
+	header {
+		max-width: 80ch;
+		width: 100%;
 		margin-bottom: 0px;
-		padding: 0 1rem 1rem;
+		padding: 1rem 0rem;
 		border-bottom: 1px solid #ccc;
 		height: 2rem;
 		display: flex;
@@ -91,27 +95,18 @@
 	}
 
 	@media (max-width: 600px) {
-		.subtitle {
+		h2 {
 			display: none;
 		}
 	}
 
-	h1,
-	h2 {
+	h1 {
 		font-weight: 400;
 	}
 
-	.icon {
-		width: 25px;
-		height: 25px;
-		margin-right: 10px;
-		display: inline-block;
-
-		// ensure icons don't get cut off
-		vertical-align: middle;
-	}
-
-	.subtitle {
-		font-size: 0.5em;
+	h2 {
+		font-weight: 300;
+		font-size: 1.2rem;
+		margin: 0;
 	}
 </style>

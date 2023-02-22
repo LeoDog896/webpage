@@ -11,7 +11,9 @@
 
 <Header />
 
-<slot />
+<main>
+	<slot />
+</main>
 
 <footer class="edit-banner">
 	<i
@@ -32,4 +34,11 @@
 		text-align: center;
 		font-size: 0.8em;
 	}
+
+	main {
+		margin-bottom: 4rem;
+		max-width: 80ch;
+		padding: 0 2ch;
+	}
 </style>
+

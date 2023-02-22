@@ -1,6 +1,12 @@
+<script context="module">
+	import img from './ImgComponent.svelte';
+	export { img };
+</script>
+
 <script>
 	import EmojiSelector from './EmojiSelector.svelte';
 	import { filename } from '$lib/filename';
+
 	// https://github.com/pngwn/MDsveX/issues/485
 
 	/** @type {string} */
@@ -23,14 +29,6 @@
 	<meta name="description" content={description} />
 </svelte:head>
 
-<main>
-	<h1>{title} <EmojiSelector emojis={emojis.split(' ')} /></h1>
+<h1>{title} <EmojiSelector emojis={emojis.split(' ')} /></h1>
 
-	<slot />
-</main>
-
-<style>
-	main {
-		margin-bottom: 4rem;
-	}
-</style>
+<slot />
