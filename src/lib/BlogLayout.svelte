@@ -19,4 +19,12 @@
 
 <h1>{title} <EmojiSelector emojis={emojis.split(' ')} /></h1>
 
-<slot />
+<main>
+	<slot />
+</main>
+
+<style>
+	main {
+		margin-bottom: 4rem;
+	}
+</style>
