@@ -59,7 +59,7 @@
 	leo
 	<EmojiSelector emojis={['🌼', '✨', '🍚']} />
 </h1>
-<p>making && breaking things on the internet</p>
+<p>making && breaking things on tech</p>
 <p>
 	{#each links as { name, href }, i}
 		<a {href}>{name}</a>
