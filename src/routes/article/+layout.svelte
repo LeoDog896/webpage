@@ -3,10 +3,3 @@
 </svelte:head>
 
 <slot />
-
-<style lang="scss">
-	.back {
-		display: block;
-		margin: 10px 0;
-	}
-</style>
