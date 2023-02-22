@@ -59,7 +59,7 @@
 </script>
 
 <h1>
-	leo
+	<a class="title" href="/">leo</a>
 	<EmojiSelector style="margin: 0 0.5rem;" emojis={['🌼', '✨', '🍚']} />
 	<span class="subtitle">making && breaking tech</span>
 
@@ -82,12 +82,17 @@
 {/each}
 
 <style lang="scss">
+	.title {
+		color: rgb(11, 92, 222);
+		text-decoration: none;
+	}
+
 	h1 {
 		margin-bottom: 0px;
 		padding-bottom: 1rem;
 		border-bottom: 1px solid #ccc;
 	}
-	
+
 	a, p {
 		font-weight: 300;
 	}
