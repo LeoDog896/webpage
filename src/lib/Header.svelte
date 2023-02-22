@@ -7,41 +7,51 @@
 	import FaDiscord from 'svelte-icons/fa/FaDiscord.svelte';
 	import IoIosMail from 'svelte-icons/io/IoIosMail.svelte';
 
-	const links: { icon: ComponentType<SvelteComponentTyped>; href: string }[] = [
+	const links: {
+		icon: ComponentType<SvelteComponentTyped>;
+		href: string;
+		label: string;
+	}[] = [
 		{
 			icon: DiStackoverflow,
-			href: 'https://stackoverflow.com/users/7589775/leodog896'
+			href: 'https://stackoverflow.com/users/7589775/leodog896',
+			label: 'Stack Overflow'
 		},
 		{
 			icon: DiGithubBadge,
-			href: 'https://github.com/LeoDog896'
+			href: 'https://github.com/LeoDog896',
+			label: 'GitHub'
 		},
 		{
 			icon: FaDiscord,
-			href: 'https://discord.com/users/LeoDog896#0675'
+			href: 'https://discord.com/users/LeoDog896#0675',
+			label: 'Discord'
 		},
 		{
 			icon: IoIosMail,
-			href: 'mailto:leodog896@gmail.com'
+			href: 'mailto:leodog896@gmail.com',
+			label: 'Email'
 		}
 	];
 </script>
 
-<h1>
-	<div>
-		<EmojiSelector style="margin: 0 0.5rem;" emojis={['🌼', '✨', '🍚']} />
-		<a class="title" href="/">leo</a>
-	</div>
-	<span class="subtitle">making <span class="and">&&</span> breaking tech</span>
+<header>
+	<h1>
+		<div>
+			<EmojiSelector style="margin: 0 0.5rem;" emojis={['🌼', '✨', '🍚']} />
+			<a class="title" href="/">leo</a>
+		</div>
+		<span class="subtitle">making <span class="and">&&</span> breaking tech</span>
 
-	<span class="icons">
-		{#each links as { icon, href }, i}
-			<a class="icon" style="--rotate: {i * 4 - (links.length - 1) * 2}deg;" {href}>
-				<svelte:component this={icon} />
-			</a>
-		{/each}
-	</span>
-</h1>
+		<span class="icons">
+			{#each links as { icon, href, label }, i}
+				<a aria-label={label} class="icon" style="--rotate: {i * 4 - (links.length - 1) * 2}deg;" {href}>
+					<svelte:component this={icon} />
+				</a>
+			{/each}
+		</span>
+	</h1>
+</header>
 
 <style lang="scss">
 	.and {
@@ -72,12 +82,18 @@
 
 	h1 {
 		margin-bottom: 0px;
-		padding-bottom: 1rem;
+		padding: 0 1rem 1rem;
 		border-bottom: 1px solid #ccc;
 		height: 2rem;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+	}
+
+	@media (max-width: 600px) {
+		.subtitle {
+			display: none;
+		}
 	}
 
 	h1,
@@ -90,10 +106,9 @@
 		height: 25px;
 		margin-right: 10px;
 		display: inline-block;
-	}
 
-	.icons {
-		float: right;
+		// ensure icons don't get cut off
+		vertical-align: middle;
 	}
 
 	.subtitle {

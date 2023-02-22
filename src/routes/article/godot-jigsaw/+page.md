@@ -303,7 +303,7 @@ func _ready() -> void:
 
 and there you have it! To demonstrate, I've changed the `piece.position = ` setter to multiply by 3 so you can see each individual jigsaw piece:
 
-<img src={FinalPicture} alt="Deformed ferret puzzle"/>
+<img src={FinalPicture} alt="The final puzzle picture split into different pieces."/>
 
 ## failed attempts
 

@@ -23,9 +23,9 @@
 	<meta name="description" content={description} />
 </svelte:head>
 
-<h1>{title} <EmojiSelector emojis={emojis.split(' ')} /></h1>
-
 <main>
+	<h1>{title} <EmojiSelector emojis={emojis.split(' ')} /></h1>
+
 	<slot />
 </main>
 

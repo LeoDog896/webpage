@@ -64,12 +64,12 @@
 		@mixin background-handler($selector, $color) {
 			&.#{$selector} {
 				background-size: 200% 100%;
-				background-image: 
-					linear-gradient(to right, #{$color} 50%, white 50%),
-                    linear-gradient(to right, white 50%, #{$color} 50%);
-				background-clip: text, border-box, padding-box;
+				background-image: linear-gradient(to right, #{$color} 50%, white 50%),
+					linear-gradient(to right, white 50%, #{$color} 50%);
 				transition: background-position 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-				-webkit-background-clip: text, border-box, padding-box;
+
+				background-clip: text, border-box;
+				-webkit-background-clip: text, border;
 				color: transparent;
 				background-origin: border-box;
 
