@@ -1,34 +1,37 @@
 <script lang="ts">
 	import EmojiSelector from '$lib/EmojiSelector.svelte';
 	import { filename } from '$lib/filename';
+	import type { ComponentType, SvelteComponentTyped } from "svelte";
+
+	import DiStackoverflow from 'svelte-icons/di/DiStackoverflow.svelte';
+	import DiGithubBadge from 'svelte-icons/di/DiGithubBadge.svelte';
+	import FaDiscord from 'svelte-icons/fa/FaDiscord.svelte'
+	import IoIosMail from 'svelte-icons/io/IoIosMail.svelte'
 
 	$filename = "/src/routes/+page.svelte"
 
-	interface Link {
+	interface DescriptiveLink {
 		name: string;
 		href: string;
-	}
-
-	interface DescriptiveLink extends Link {
 		description: string;
 		type: 'project' | 'security' | 'article';
 	}
 
-	const links: Link[] = [
+	const links: { icon: ComponentType<SvelteComponentTyped>, href: string }[] = [
 		{
-			name: 'so',
+			icon: DiStackoverflow,
 			href: 'https://stackoverflow.com/users/7589775/leodog896'
 		},
 		{
-			name: 'gh',
+			icon: DiGithubBadge,
 			href: 'https://github.com/LeoDog896'
 		},
 		{
-			name: 'discord',
+			icon: FaDiscord,
 			href: 'https://discord.com/users/LeoDog896#0675'
 		},
 		{
-			name: 'email',
+			icon: IoIosMail,
 			href: 'mailto:leodog896@gmail.com'
 		}
 	];
@@ -57,17 +60,17 @@
 
 <h1>
 	leo
-	<EmojiSelector emojis={['🌼', '✨', '🍚']} />
+	<EmojiSelector style="margin: 0 0.5rem;" emojis={['🌼', '✨', '🍚']} />
+	<span class="subtitle">making && breaking tech</span>
+
+	<span class="icons">
+		{#each links as { icon, href }}
+			<a class="icon" {href}>
+				<svelte:component this={icon}></svelte:component>
+			</a>
+		{/each}
+	</span>
 </h1>
-<p>making && breaking things on tech</p>
-<p>
-	{#each links as { name, href }, i}
-		<a {href}>{name}</a>
-		{#if i < links.length - 1}
-			<span> | </span>
-		{/if}
-	{/each}
-</p>
 
 {#each stuff as { name, description, href, type }}
 	<div class="item">
@@ -81,11 +84,19 @@
 <style lang="scss">
 	h1 {
 		margin-bottom: 0px;
-		padding-bottom: 0px;
+		padding-bottom: 1rem;
+		border-bottom: 1px solid #ccc;
 	}
+	
+	a, p {
+		font-weight: 300;
+	}
+
+	h1, h2 {
+		font-weight: 400;
+	}
+
 	.item {
-		border: 1px dotted #aaa;
-		padding: 10px;
 
 		h2 {
 			margin: 0;
@@ -99,7 +110,17 @@
 			margin-bottom: 10px;
 		}
 
+		p {
+			margin-top: 0.5rem;
+		}
+
 		a {
+
+			h2 {
+				margin-bottom: 0;
+				margin-top: 2rem;
+			}
+
 			&.link-project {
 				color: rgb(11, 92, 222);
 			}
@@ -112,5 +133,20 @@
 				color: rgb(154, 16, 219);
 			}
 		}
+	}
+
+	.icon {
+		width: 25px;
+		height: 25px;
+		margin-right: 10px;
+		display: inline-block;
+	}
+
+	.icons {
+		float: right;
+	}
+
+	.subtitle {
+		font-size: 0.5em;
 	}
 </style>

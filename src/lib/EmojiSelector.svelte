@@ -5,13 +5,15 @@
 
 	let currentEmoji = randomEmoji();
 
+	export let style = ""
+
 	const cycleEmoji = () => {
 		const emojiIndex = emojis.indexOf(currentEmoji);
 		currentEmoji = emojis[(emojiIndex + 1) % emojis.length];
 	};
 </script>
 
-<button on:click={cycleEmoji} on:keypress={cycleEmoji}>{currentEmoji}</button>
+<button {style} on:click={cycleEmoji} on:keypress={cycleEmoji}>{currentEmoji}</button>
 
 <style>
 	button {
