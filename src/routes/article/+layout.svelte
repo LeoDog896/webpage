@@ -2,8 +2,6 @@
 	<meta name="author" content="LeoDog896" />
 </svelte:head>
 
-<a href="/" class="back">back</a>
-
 <slot />
 
 <style lang="scss">

@@ -2,11 +2,14 @@
 	import '../app.css';
 	import 'prism-themes/themes/prism-base16-ateliersulphurpool.light.css';
 	import { filename } from '$lib/filename';
+	import Header from '$lib/Header.svelte';
 </script>
 
 <svelte:head>
 	<title>leo</title>
 </svelte:head>
+
+<Header />
 
 <slot />
 

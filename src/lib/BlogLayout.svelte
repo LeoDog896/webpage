@@ -15,7 +15,7 @@
 	/** @type {string} */
 	export let slug;
 
-	$filename = `/src/routes/article/${slug}/+page.md`
+	$filename = `/src/routes/article/${slug}/+page.md`;
 </script>
 
 <svelte:head>

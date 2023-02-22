@@ -5,7 +5,7 @@
 
 	let currentEmoji = randomEmoji();
 
-	export let style = ""
+	export let style = '';
 
 	const cycleEmoji = () => {
 		const emojiIndex = emojis.indexOf(currentEmoji);
