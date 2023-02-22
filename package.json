@@ -1,6 +1,6 @@
 {
-	"name": "leodog896.github.io",
-	"version": "0.0.1",
+	"private": true,
+	"name": "leodog896.com",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
