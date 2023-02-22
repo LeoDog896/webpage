@@ -79,6 +79,10 @@
 {/each}
 
 <style lang="scss">
+	h1 {
+		margin-bottom: 0px;
+		padding-bottom: 0px;
+	}
 	.item {
 		border: 1px dotted #aaa;
 		padding: 10px;

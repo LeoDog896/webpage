@@ -1,6 +1,6 @@
 <script>
 	import '../app.css';
-	import 'prism-themes/themes/prism-material-oceanic.css';
+	import 'prism-themes/themes/prism-base16-ateliersulphurpool.light.css';
 	import { filename } from '$lib/filename';
 </script>
 
