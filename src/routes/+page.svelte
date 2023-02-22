@@ -34,57 +34,75 @@
 
 {#each stuff as { name, description, href, type }}
 	<div class="item">
-		<a {href} class={`link-${type}`}>
-			<h2>{name}</h2>
-		</a>
+		<h2>
+			<a {href} class={`link-${type}`}>
+				<span class="name">{name}</span>
+				<span class="boost">>>></span>
+			</a>
+		</h2>
 		<p><i>{description}</i></p>
 	</div>
 {/each}
 
 <style lang="scss">
 	h2 {
+		margin: 0;
+		margin-top: 1.5rem;
 		font-weight: 400;
 	}
 
-	a,
 	p {
-		font-weight: 300;
+		margin-bottom: 0;
+		margin-top: 0.5rem;
 	}
 
-	.item {
-		h2 {
-			margin: 0;
-		}
+	.item:not(:last-child) {
+		margin-bottom: 10px;
+	}
 
-		p {
-			margin-bottom: 0;
-		}
+	a {
+		@mixin background-handler($selector, $color) {
+			&.#{$selector} {
+				background-size: 200% 100%;
+				background-image: 
+					linear-gradient(to right, #{$color} 50%, white 50%),
+                    linear-gradient(to right, white 50%, #{$color} 50%);
+				background-clip: text, border-box, padding-box;
+				transition: background-position 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+				-webkit-background-clip: text, border-box, padding-box;
+				color: transparent;
+				background-origin: border-box;
 
-		&:not(:last-child) {
-			margin-bottom: 10px;
-		}
+				// this ensures that the border doesn't show up when the link is hovered
+				border-bottom: 1px dotted transparent;
 
-		p {
-			margin-top: 0.5rem;
-		}
+				.name {
+					border-bottom: 1px dotted $color;
+				}
 
-		a {
-			h2 {
-				margin-bottom: 0;
-				margin-top: 2rem;
-			}
+				&:hover {
+					background-position: -100% 0;
+				}
 
-			&.link-project {
-				color: rgb(11, 92, 222);
-			}
-
-			&.link-security {
-				color: rgb(138, 0, 0);
-			}
-
-			&.link-article {
-				color: rgb(154, 16, 219);
+				&:hover .boost {
+					opacity: 1;
+				}
 			}
 		}
+
+		.boost {
+			color: #fff;
+			opacity: 0;
+			transition: opacity 0.2s ease-in-out;
+		}
+
+		margin-bottom: 0;
+		margin-top: 2rem;
+
+		@include background-handler(link-project, rgb(11, 92, 222));
+		@include background-handler(link-security, rgb(199, 8, 8));
+		@include background-handler(link-article, rgb(154, 16, 219));
+
+		width: fit-content;
 	}
 </style>

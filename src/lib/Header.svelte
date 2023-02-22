@@ -28,22 +28,45 @@
 </script>
 
 <h1>
-	<a class="title" href="/">leo</a>
-	<EmojiSelector style="margin: 0 0.5rem;" emojis={['🌼', '✨', '🍚']} />
-	<span class="subtitle">making && breaking tech</span>
+	<div>
+		<EmojiSelector style="margin: 0 0.5rem;" emojis={['🌼', '✨', '🍚']} />
+		<a class="title" href="/">leo</a>
+	</div>
+	<span class="subtitle">making <span class="and">&&</span> breaking tech</span>
 
 	<span class="icons">
-		{#each links as { icon, href }}
-			<a class="icon" {href}>
+		{#each links as { icon, href }, i}
+			<a class="icon" style="--rotate: {i * 4 - (links.length - 1) * 2}deg;" {href}>
 				<svelte:component this={icon} />
 			</a>
 		{/each}
 	</span>
 </h1>
 
-<style>
+<style lang="scss">
+	.and {
+		padding: 0 0.2rem;
+		background-color: #fff;
+		color: #000;
+		border-bottom: 1px solid #ccc;
+		&:hover {
+			background-color: #000;
+			color: #fff;
+		}
+	}
+
+	.icon {
+		transition: transform 0.2s ease-in-out;
+		transform-origin: 50% 100%;
+
+		&:hover {
+			opacity: 0.5;
+			transform: rotate(var(--rotate));
+			transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+		}
+	}
+
 	.title {
-		color: rgb(11, 92, 222);
 		text-decoration: none;
 	}
 
@@ -51,6 +74,10 @@
 		margin-bottom: 0px;
 		padding-bottom: 1rem;
 		border-bottom: 1px solid #ccc;
+		height: 2rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
 	}
 
 	h1,
