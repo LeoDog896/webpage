@@ -1,6 +1,10 @@
+<script lang="ts">
+	export let src: string;
+	export let alt: string;
+</script>
 
 <figure>
-	<slot></slot>
+	<img src={src} alt={alt} />
 </figure>
 
 <style>
