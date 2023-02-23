@@ -35,10 +35,8 @@
 {#each stuff as { name, description, href, type }}
 	<div class="item">
 		<h2>
-			<a {href} class={`link-${type}`}>
-				<span class="name">{name}</span>
-				<span class="boost">>>></span>
-			</a>
+			<!-- svelte-ignore a11y-missing-content -->
+			<a {href} class={`link-${type}`} title={name + " >>>"} aria-label={name}></a>
 		</h2>
 		<p><i>{description}</i></p>
 	</div>
@@ -63,39 +61,44 @@
 	a {
 		@mixin background-handler($selector, $color) {
 			&.#{$selector} {
-				background-size: 200% 100%;
-				background-image: 
-					linear-gradient(to right, #{$color} 50%, white 50%),
-                    linear-gradient(to right, white 50%, #{$color} 50%);
-				background-clip: text, border-box, padding-box;
-				transition: background-position 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-				-webkit-background-clip: text, border-box, padding-box;
-				color: transparent;
-				background-origin: border-box;
+				position: relative;
 
-				// this ensures that the border doesn't show up when the link is hovered
-				border-bottom: 1px dotted transparent;
-
-				.name {
-					border-bottom: 1px dotted $color;
+				&:hover::after {
+					width: 100%;
+					bottom: -1px;
 				}
 
-				&:hover {
-					background-position: -100% 0;
+				// apply bottom: -1px also not during hover as well.
+
+				&::after {
+					width: 0;
+					bottom: -1px;
 				}
 
-				&:hover .boost {
-					opacity: 1;
+				&:before {
+					content: attr(title);
+					color: $color;
 				}
+
+				&::after {
+					content: attr(title);
+					position: absolute;
+					left: 0;
+					width: 0;
+					top: 0;
+					bottom: 0;
+					color: white;
+					transition: width 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+					background-color: $color;
+					white-space: nowrap;
+					overflow: hidden;
+				}
+
+				text-decoration: none;
+				border-bottom: 1px dotted $color;
 			}
 		}
-
-		.boost {
-			color: #fff;
-			opacity: 0;
-			transition: opacity 0.2s ease-in-out;
-		}
-
+		
 		margin-bottom: 0;
 		margin-top: 2rem;
 

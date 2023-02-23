@@ -7,41 +7,49 @@
 	import FaDiscord from 'svelte-icons/fa/FaDiscord.svelte';
 	import IoIosMail from 'svelte-icons/io/IoIosMail.svelte';
 
-	const links: { icon: ComponentType<SvelteComponentTyped>; href: string }[] = [
+	const links: {
+		icon: ComponentType<SvelteComponentTyped>;
+		href: string;
+		label: string;
+	}[] = [
 		{
 			icon: DiStackoverflow,
-			href: 'https://stackoverflow.com/users/7589775/leodog896'
+			href: 'https://stackoverflow.com/users/7589775/leodog896',
+			label: 'Stack Overflow'
 		},
 		{
 			icon: DiGithubBadge,
-			href: 'https://github.com/LeoDog896'
+			href: 'https://github.com/LeoDog896',
+			label: 'GitHub'
 		},
 		{
 			icon: FaDiscord,
-			href: 'https://discord.com/users/LeoDog896#0675'
+			href: 'https://discord.com/users/LeoDog896#0675',
+			label: 'Discord'
 		},
 		{
 			icon: IoIosMail,
-			href: 'mailto:leodog896@gmail.com'
+			href: 'mailto:leodog896@gmail.com',
+			label: 'Email'
 		}
 	];
 </script>
 
-<h1>
-	<div>
+<header>
+	<h1>
 		<EmojiSelector style="margin: 0 0.5rem;" emojis={['🌼', '✨', '🍚']} />
 		<a class="title" href="/">leo</a>
-	</div>
-	<span class="subtitle">making <span class="and">&&</span> breaking tech</span>
+	</h1>
+	<h2>making <span class="and">&&</span> breaking tech</h2>
 
-	<span class="icons">
-		{#each links as { icon, href }, i}
-			<a class="icon" style="--rotate: {i * 4 - (links.length - 1) * 2}deg;" {href}>
+	<div class="icons">
+		{#each links as { icon, href, label }, i}
+			<a aria-label={label} class="icon" style="--rotate: {i * 4 - (links.length - 1) * 2}deg;" {href}>
 				<svelte:component this={icon} />
 			</a>
 		{/each}
-	</span>
-</h1>
+	</div>
+</header>
 
 <style lang="scss">
 	.and {
@@ -58,6 +66,10 @@
 	.icon {
 		transition: transform 0.2s ease-in-out;
 		transform-origin: 50% 100%;
+		width: 25px;
+		height: 25px;
+		margin-right: 10px;
+		display: inline-block;
 
 		&:hover {
 			opacity: 0.5;
@@ -70,9 +82,11 @@
 		text-decoration: none;
 	}
 
-	h1 {
+	header {
+		max-width: 80ch;
+		width: 100%;
 		margin-bottom: 0px;
-		padding-bottom: 1rem;
+		padding: 1rem 0rem;
 		border-bottom: 1px solid #ccc;
 		height: 2rem;
 		display: flex;
@@ -80,23 +94,19 @@
 		justify-content: space-between;
 	}
 
-	h1,
-	h2 {
+	@media (max-width: 600px) {
+		h2 {
+			display: none;
+		}
+	}
+
+	h1 {
 		font-weight: 400;
 	}
 
-	.icon {
-		width: 25px;
-		height: 25px;
-		margin-right: 10px;
-		display: inline-block;
-	}
-
-	.icons {
-		float: right;
-	}
-
-	.subtitle {
-		font-size: 0.5em;
+	h2 {
+		font-weight: 300;
+		font-size: 1.2rem;
+		margin: 0;
 	}
 </style>

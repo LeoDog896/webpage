@@ -1,5 +1,5 @@
 <script>
-	import '../app.css';
+	import '../app.scss';
 	import 'prism-themes/themes/prism-base16-ateliersulphurpool.light.css';
 	import { filename } from '$lib/filename';
 	import Header from '$lib/Header.svelte';
@@ -11,15 +11,17 @@
 
 <Header />
 
-<slot />
+<main>
+	<slot />
+</main>
 
-<div class="edit-banner">
+<footer class="edit-banner">
 	<i
 		>this page is open source. found a typo? <a
 			href="https://github.com/LeoDog896/webpage/blob/main{$filename}">edit it!</a
 		></i
 	>
-</div>
+</footer>
 
 <style>
 	.edit-banner {
@@ -32,4 +34,11 @@
 		text-align: center;
 		font-size: 0.8em;
 	}
+
+	main {
+		margin-bottom: 4rem;
+		max-width: 80ch;
+		padding: 0 2ch;
+	}
 </style>
+
