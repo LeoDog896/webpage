@@ -14,7 +14,7 @@
 		{
 			name: 'Godot + Jigsaws',
 			description: 'setting up a jigsaw puzzle game in Godot',
-			href: 'article/godot-jigsaw/',
+			href: 'article/godot-jigsaw',
 			type: 'article'
 		},
 		{
