@@ -40,7 +40,7 @@
 		<EmojiSelector style="margin: 0 0.5rem;" emojis={['🌼', '✨', '🍚']} />
 		<a class="title" href="/">leo</a>
 	</h1>
-	<h2>making <span class="and">&&</span> breaking tech</h2>
+	<h2>making <span class="and"><a target="_blank" rel="noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND">&&</a></span> breaking tech</h2>
 
 	<div class="icons">
 		{#each links as { icon, href, label }, i}
@@ -61,6 +61,11 @@
 			background-color: #000;
 			color: #fff;
 		}
+	}
+
+	.and a {
+		text-decoration: none;
+		color: inherit;
 	}
 
 	.icon {
