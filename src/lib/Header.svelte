@@ -24,7 +24,7 @@
 		},
 		{
 			icon: FaDiscord,
-			href: 'https://discord.com/users/LeoDog896#0675',
+			href: 'https://discord.com/users/208734037018279937',
 			label: 'Discord'
 		},
 		{
