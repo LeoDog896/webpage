@@ -12,6 +12,12 @@
 
 	const stuff: DescriptiveLink[] = [
 		{
+			name: "twice-around ansi injection in deno",
+			description: "permission prompts are wonderful, but the modern terminal is powerful too.",
+			href: "article/deno-ansi-injection",
+			type: 'security'
+		},
+		{
 			name: 'Godot + Jigsaws',
 			description: 'setting up a jigsaw puzzle game in Godot',
 			href: 'article/godot-jigsaw',
