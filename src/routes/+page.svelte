@@ -12,7 +12,7 @@
 
 	const stuff: DescriptiveLink[] = [
 		{
-			name: "twice-around ansi injection in deno",
+			name: "Deno & Prompt ANSI manipulation x2",
 			description: "permission prompts are wonderful, but the modern terminal is powerful too.",
 			href: "article/deno-ansi-injection",
 			type: 'security'
