@@ -1,6 +1,5 @@
 <script>
 	import '../app.scss';
-	import 'highlight.js/styles/github.css';
 	import { filename } from '$lib/filename';
 	import Header from '$lib/Header.svelte';
 </script>
@@ -41,4 +40,3 @@
 		padding: 0 2ch;
 	}
 </style>
-

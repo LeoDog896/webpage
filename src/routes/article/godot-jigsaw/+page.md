@@ -297,7 +297,6 @@ func _ready() -> void:
 
 and there you have it! To demonstrate, I've changed the `piece.position = ` setter to multiply by 3 so you can see each individual jigsaw piece:
 
-
 ![The final puzzle picture split into different pieces.](/godot-jigsaw/final-picture.png)
 
 ## failed attempts

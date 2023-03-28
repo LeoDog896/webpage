@@ -4,7 +4,7 @@
 </script>
 
 <figure>
-	<img src={src} alt={alt} />
+	<img {src} {alt} />
 </figure>
 
 <style>
@@ -17,4 +17,3 @@
 		max-width: 100%;
 	}
 </style>
-	

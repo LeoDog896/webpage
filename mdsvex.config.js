@@ -1,6 +1,6 @@
 import { defineMDSveXConfig as defineConfig } from 'mdsvex';
-import codeTitle from "remark-code-title";
-import rehypeHighlight from 'rehype-highlight'
+import codeTitle from 'remark-code-title';
+import rehypePrettyCode from 'rehype-pretty-code';
 
 const config = defineConfig({
 	extensions: ['.svelte.md', '.md', '.svx'],
@@ -14,7 +14,14 @@ const config = defineConfig({
 	highlight: false,
 
 	remarkPlugins: [codeTitle],
-	rehypePlugins: [rehypeHighlight]
+	rehypePlugins: [
+		[
+			rehypePrettyCode,
+			{
+				theme: 'github-light'
+			}
+		]
+	]
 });
 
 export default config;

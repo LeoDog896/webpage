@@ -40,11 +40,25 @@
 		<EmojiSelector style="margin: 0 0.5rem;" emojis={['🌼', '✨', '🍚']} />
 		<a class="title" href="/">leo</a>
 	</h1>
-	<h2>making <span class="and"><a target="_blank" rel="noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND">&&</a></span> breaking tech</h2>
+	<h2>
+		making <span class="and"
+			><a
+				target="_blank"
+				rel="noreferrer"
+				href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND"
+				>&&</a
+			></span
+		> breaking tech
+	</h2>
 
 	<div class="icons">
 		{#each links as { icon, href, label }, i}
-			<a aria-label={label} class="icon" style="--rotate: {i * 4 - (links.length - 1) * 2}deg;" {href}>
+			<a
+				aria-label={label}
+				class="icon"
+				style="--rotate: {i * 4 - (links.length - 1) * 2}deg;"
+				{href}
+			>
 				<svelte:component this={icon} />
 			</a>
 		{/each}

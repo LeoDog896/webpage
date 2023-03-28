@@ -12,9 +12,9 @@
 
 	const stuff: DescriptiveLink[] = [
 		{
-			name: "Deno & Prompt ANSI manipulation x2",
-			description: "permission prompts are wonderful, but the modern terminal is powerful too.",
-			href: "article/deno-ansi-injection",
+			name: 'Deno & Prompt ANSI manipulation x2',
+			description: 'permission prompts are wonderful, but the modern terminal is powerful too.',
+			href: 'article/deno-ansi-injection',
 			type: 'security'
 		},
 		{
@@ -42,7 +42,7 @@
 	<div class="item">
 		<h2>
 			<!-- svelte-ignore a11y-missing-content -->
-			<a {href} class={`link-${type}`} title={name + " >>>"} aria-label={name}></a>
+			<a {href} class={`link-${type}`} title={name + ' >>>'} aria-label={name} />
 		</h2>
 		<p><i>{description}</i></p>
 	</div>
@@ -104,7 +104,7 @@
 				border-bottom: 1px dotted $color;
 			}
 		}
-		
+
 		margin-bottom: 0;
 		margin-top: 2rem;
 
