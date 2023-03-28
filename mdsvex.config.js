@@ -1,5 +1,5 @@
 import { defineMDSveXConfig as defineConfig } from 'mdsvex';
-import codeTitle from 'remark-code-title';
+import codeTitle from 'rehype-code-titles';
 import rehypePrettyCode from 'rehype-pretty-code';
 
 const config = defineConfig({
@@ -13,8 +13,9 @@ const config = defineConfig({
 
 	highlight: false,
 
-	remarkPlugins: [codeTitle],
+	remarkPlugins: [],
 	rehypePlugins: [
+		codeTitle,
 		[
 			rehypePrettyCode,
 			{

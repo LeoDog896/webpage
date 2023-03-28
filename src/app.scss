@@ -13,15 +13,26 @@ body {
 	font-weight: 400;
 }
 
-/* softer a links */
+// softer a links
 
 a {
 	color: rgb(21, 124, 0);
 	text-decoration: dotted underline;
 }
 
+// code formatting
+
 code {
 	counter-reset: line;
+	background-color: rgb(242, 242, 242);
+}
+
+.rehype-code-title + div[data-rehype-pretty-code-fragment] {
+	background-color: rgb(242, 242, 242);
+}
+
+pre > code {
+	padding: .5rem 0rem;
 }
 
 code > .line::before {
@@ -31,9 +42,23 @@ code > .line::before {
 	/* Other styling */
 	display: inline-block;
 	width: 1rem;
-	margin-right: 2rem;
+	padding-right: 0.5rem;
+	margin-right: 1rem;
 	text-align: right;
 	color: gray;
+	border-right: 1px solid black;
+}
+
+.rehype-code-title {
+	margin-bottom: -0.9rem;
+	z-index: 1;
+	position: relative;
+	padding: 0.5em 0.5em;
+	margin-left: 1rem;
+	border-bottom: 1px solid black;
+	font-family: Consolas, 'Andale Mono WT', 'Andale Mono', 'Lucida Console', 'Lucida Sans Typewriter',
+		'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Liberation Mono', 'Nimbus Mono L', Monaco,
+		'Courier New', Courier, monospace;
 }
 
 code[data-line-numbers-max-digits='2'] > .line::before {

@@ -43,11 +43,11 @@ and they're a great way to do things like offload CPU intensive tasks to a separ
 
 At the time, I was trying to fetch some data from my main file asynchronously, and wanted to see how well it worked with web workers.
 
-```ts title=worker.ts
+```ts:worker.ts
 console.log('hello from worker');
 ```
 
-```ts title=main.ts
+```ts:main.ts
 const worker = new Worker(new URL('worker.ts', import.meta.url).href, {
 	type: 'module'
 });
@@ -63,7 +63,7 @@ This worked great! I was able to fetch data from the internet, and I was able to
 
 However, when running it again, I forgot to include `--allow-net`, leading to this interesting prompt:
 
-```
+```sh
 ┌ ⚠️  Deno requests net access to "example.com".
 ├ Requested by `fetch()` API
 ├ Run again with --allow-net to bypass this prompt.
@@ -77,7 +77,7 @@ However, from my previous work with direct ANSI codes (as I wanted to know how t
 
 So, I decided to try it out.
 
-```ts title=worker.ts
+```ts:worker.ts
 console.clear();
 console.log(`
 ┌ ⚠️  Deno requests net access to "deno.land".
@@ -87,7 +87,7 @@ console.log(`
 `);
 ```
 
-```ts title=main.ts
+```ts:main.ts
 const worker = new Worker(new URL('worker.ts', import.meta.url).href, {
 	type: 'module'
 });
@@ -111,7 +111,7 @@ Then, looking at the permission prompt (from my previous CVE), I noticed that it
 
 Here was the template for the permission prompt:
 
-```
+```sh
 ┌ ⚠️  Deno requests ${type} access to ${scope}.
 ├ Requested by `${api}` API
 ├ Run again with --allow-${type} to bypass this prompt.
