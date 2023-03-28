@@ -1,5 +1,6 @@
 import { defineMDSveXConfig as defineConfig } from 'mdsvex';
-import { join } from 'path';
+import codeTitle from "remark-code-title";
+import rehypeHighlight from 'rehype-highlight'
 
 const config = defineConfig({
 	extensions: ['.svelte.md', '.md', '.svx'],
@@ -10,8 +11,10 @@ const config = defineConfig({
 
 	layout: './src/lib/BlogLayout.svelte',
 
-	remarkPlugins: [],
-	rehypePlugins: []
+	highlight: false,
+
+	remarkPlugins: [codeTitle],
+	rehypePlugins: [rehypeHighlight]
 });
 
 export default config;

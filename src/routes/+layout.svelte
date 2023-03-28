@@ -1,6 +1,6 @@
 <script>
 	import '../app.scss';
-	import 'prism-themes/themes/prism-base16-ateliersulphurpool.light.css';
+	import 'highlight.js/styles/github.css';
 	import { filename } from '$lib/filename';
 	import Header from '$lib/Header.svelte';
 </script>

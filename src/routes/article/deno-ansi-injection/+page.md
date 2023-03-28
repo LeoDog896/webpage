@@ -42,13 +42,11 @@ and they're a great way to do things like offload CPU intensive tasks to a separ
 
 At the time, I was trying to fetch some data from my main file asynchronously, and wanted to see how well it worked with web workers.
 
-```ts
-// worker.ts
+```ts title=worker.ts
 console.log("hello from worker");
 ```
 
-```ts
-// main.ts
+```ts title=main.ts
 const worker = new Worker(new URL("worker.ts", import.meta.url).href, {
   type: "module",
 });
@@ -78,8 +76,7 @@ However, from my previous work with direct ANSI codes (as I wanted to know how t
 
 So, I decided to try it out.
 
-```ts
-// worker.ts
+```ts title=worker.ts
 console.clear();
 console.log(`
 ┌ ⚠️  Deno requests net access to "deno.land".
@@ -89,8 +86,7 @@ console.log(`
 `);
 ```
 
-```ts
-// main.ts
+```ts title=main.ts
 const worker = new Worker(new URL("worker.ts", import.meta.url).href, {
   type: "module",
 });
