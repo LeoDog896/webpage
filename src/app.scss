@@ -33,6 +33,7 @@ code {
 
 pre > code {
 	padding: .5rem 0rem;
+	display: grid;
 }
 
 code > .line::before {
@@ -67,8 +68,4 @@ code[data-line-numbers-max-digits='2'] > .line::before {
 
 code[data-line-numbers-max-digits='3'] > .line::before {
 	width: 3rem;
-}
-
-pre > code {
-	display: grid;
 }
