@@ -6,7 +6,7 @@ date: 2023-03-25
 slug: deno-ansi-injection
 ---
 
-Deno is a wonderful project, and I'm a big fan. I've been following the project for a few years now, and it is one of my favourite scripting runtimes, even more than python.
+Deno is a wonderful project (and i <3 it). I've been following the project for a few years now, and it is one of my favourite scripting runtimes, even more than python.
 It's a great way to run TypeScript (and, unfortunately, JavaScript) code on the server side, and its package model + permission system proves extremely powerful.
 
 However, the project for me served as a good start on my first few CVEs.
@@ -101,7 +101,7 @@ deno run main.ts
 
 As predicted, the prompt was cleared, and the message was printed out. This simple trick allowed me to spoof the prompt, and it was a great way to get a user to accidentally grant permissions to a malicious script.
 
-This CVE is now [GHSA-mc52-jpm2-cqh6](https://github.com/denoland/deno/security/advisories/GHSA-mc52-jpm2-cqh6), or [CVE-2023-22499](https://security.snyk.io/vuln/SNYK-RUST-DENO-3233636) (snyk).
+This CVE is now [GHSA-mc52-jpm2-cqh6](https://github.com/denoland/deno/security/advisories/GHSA-mc52-jpm2-cqh6), or [CVE-2023-22499](https://nvd.nist.gov/vuln/detail/CVE-2023-22499) ([snyk](https://security.snyk.io/vuln/SNYK-RUST-DENO-3233636)).
 
 ## on purpose
 
@@ -151,7 +151,7 @@ Deno[Deno.internal].core.ops.op_spawn_child(
 
 Once again, this allowed me to spoof the prompt, providing another way to get a user to accidentally grant permissions to a malicious script.
 
-This is now [GHSA-vq67-rp93-65qf](https://github.com/denoland/deno/security/advisories/GHSA-vq67-rp93-65qf), or [CVE-2023-28450](https://nvd.nist.gov/vuln/detail/CVE-2023-28450)
+This is now [GHSA-vq67-rp93-65qf](https://github.com/denoland/deno/security/advisories/GHSA-vq67-rp93-65qf), or [CVE-2023-28446](https://nvd.nist.gov/vuln/detail/CVE-2023-28446) ([snyk](https://security.snyk.io/vuln/SNYK-RUST-DENORUNTIME-3373053))
 
 ## tips
 
