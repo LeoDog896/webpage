@@ -6,7 +6,7 @@ date: 2023-03-25
 slug: deno-ansi-injection
 ---
 
-Deno is a wonderful project (and i <3 it). I've been following the project for a few years now, and it is one of my favourite scripting runtimes, even more than python.
+Deno is a wonderful project (and i &amp;lt;3 it). I've been following the project for a few years now, and it is one of my favourite scripting runtimes, even more than python.
 It's a great way to run TypeScript (and, unfortunately, JavaScript) code on the server side, and its package model + permission system proves extremely powerful.
 
 However, the project for me served as a good start on my first few CVEs.
