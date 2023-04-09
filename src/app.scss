@@ -25,6 +25,7 @@ a {
 code {
 	counter-reset: line;
 	background-color: rgb(242, 242, 242);
+	overflow: scroll;
 }
 
 .rehype-code-title + div[data-rehype-pretty-code-fragment] {
