@@ -41,11 +41,9 @@
 <svelte:head>
 	<title>leo</title>
 	<meta name="description" content="leo's personal blog" />
-	<!-- Idk if you wanna include this, just uncomment + implement if you do. Helps SEO.
 	<meta
 		name="keywords"
-		content="LeoDog896"
-	/> -->
+		content="LeoDog896, tech, blog, coding, programming"
 	<link rel="canonical" href="https://www.leodog896.com/" />
 
 	<!-- Open Graph Meta Tags -->
