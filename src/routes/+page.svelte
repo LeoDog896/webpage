@@ -38,6 +38,28 @@
 	];
 </script>
 
+<svelte:head>
+	<title>leo</title>
+	<meta name="description" content="leo's personal blog" />
+	<!-- Idk if you wanna include this, just uncomment + implement if you do. Helps SEO.
+	<meta
+		name="keywords"
+		content="LeoDog896"
+	/> -->
+	<link rel="canonical" href="https://www.leodog896.com/" />
+
+	<!-- Open Graph Meta Tags -->
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="leodog896.com" />
+	<meta property="og:description" content="leo's personal blog" />
+	<meta property="og:url" content="https://www.leodog896.com/" />
+
+	<!-- Twitter Meta Tags -->
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:title" content="leodog896.com" />
+	<meta name="twitter:description" content="leo's personal blog" />
+</svelte:head>
+
 {#each stuff as { name, description, href, type }}
 	<div class="item">
 		<h2>
