@@ -5,7 +5,10 @@
 </script>
 
 <svelte:head>
-	<title>leo</title>
+	<meta name="author" content="Tristan F." />
+	<meta name="theme-color" content="#B5D6AF" />-->
+	<meta name="robots" content="index, follow" />
+	<meta name="publisher" content="Tristan F." />
 </svelte:head>
 
 <Header />
