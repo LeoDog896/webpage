@@ -31,8 +31,7 @@
 	<!-- Meta Tags -->
 	<meta name="description" content={description} />
 	<link rel="canonical" href="https://leodog896.com/article/{slug}" />
-	<!-- Idk if you wanna include this, just uncomment + implement if you do. Helps SEO.
-	<meta name="keywords" content="{keywords}, LeoDog896" /> -->
+	<meta name="keywords" content="blog, tech, programming, coding, programming article, article, post, LeoDog896" /> -->
 
 	<!-- Open Graph Meta Tags -->
 	<meta property="og:type" content="article" />
