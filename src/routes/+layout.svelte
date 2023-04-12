@@ -5,12 +5,10 @@
 </script>
 
 <svelte:head>
-	<!-- these tags are applied to all pages -->
-	<meta name="author" content="Tristan F" />
-	<!-- change this to theme color of your website; changes Discord embed color
-	<meta name="theme-color" content="#08608c" />-->
+	<meta name="author" content="Tristan F." />
+	<meta name="theme-color" content="#B5D6AF" />-->
 	<meta name="robots" content="index, follow" />
-	<meta name="publisher" content="Tristan F" />
+	<meta name="publisher" content="Tristan F." />
 </svelte:head>
 
 <Header />
