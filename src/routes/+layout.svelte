@@ -5,7 +5,12 @@
 </script>
 
 <svelte:head>
-	<title>leo</title>
+	<!-- these tags are applied to all pages -->
+	<meta name="author" content="Tristan F" />
+	<!-- change this to theme color of your website; changes Discord embed color
+	<meta name="theme-color" content="#08608c" />-->
+	<meta name="robots" content="index, follow" />
+	<meta name="publisher" content="Tristan F" />
 </svelte:head>
 
 <Header />
