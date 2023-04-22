@@ -12,6 +12,12 @@
 
 	const stuff: DescriptiveLink[] = [
 		{
+			name: 'Automatic GitHub Catalog Generation',
+			description: 'taking advantage of github pages & jekyll for repo cataloging',
+			href: 'article/github-catalog',
+			type: 'project'
+		},
+		{
 			name: 'Deno & Prompt ANSI manipulation x2',
 			description: 'permission prompts are wonderful, but so is modern terminal',
 			href: 'article/deno-ansi-injection',
@@ -43,7 +49,7 @@
 	<meta name="description" content="leo's personal blog" />
 	<meta
 		name="keywords"
-		content="LeoDog896, tech, blog, coding, programming"
+		content="LeoDog896, tech, blog, coding, programming">
 	<link rel="canonical" href="https://www.leodog896.com/" />
 
 	<!-- Open Graph Meta Tags -->
