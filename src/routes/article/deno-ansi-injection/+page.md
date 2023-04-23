@@ -1,5 +1,5 @@
 ---
-title: twice-around ansi injection in deno
+title: 2 ANSI injection vulnerabilities in Deno
 description: permission prompts meet the modern terminal
 emojis: 🦕 🚫 📟
 date: 2023-03-25

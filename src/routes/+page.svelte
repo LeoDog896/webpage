@@ -1,47 +1,10 @@
 <script lang="ts">
+	import type { PageData } from './$types';
 	import { filename } from '$lib/filename';
 
 	$filename = '/src/routes/+page.svelte';
 
-	interface DescriptiveLink {
-		name: string;
-		href: string;
-		description: string;
-		type: 'project' | 'security' | 'article';
-	}
-
-	const stuff: DescriptiveLink[] = [
-		{
-			name: 'Automatic GitHub Catalog Generation',
-			description: 'taking advantage of github pages & jekyll for repo cataloging',
-			href: 'article/github-catalog',
-			type: 'project'
-		},
-		{
-			name: 'Deno & Prompt ANSI manipulation x2',
-			description: 'permission prompts meet the modern terminal',
-			href: 'article/deno-ansi-injection',
-			type: 'security'
-		},
-		{
-			name: 'Godot + Jigsaws',
-			description: 'setting up a jigsaw puzzle game in Godot',
-			href: 'article/godot-jigsaw',
-			type: 'article'
-		},
-		{
-			name: 'CVE-2023-22499',
-			description: 'my first reported security vulnerability!',
-			href: 'https://github.com/denoland/deno/security/advisories/GHSA-mc52-jpm2-cqh6',
-			type: 'security'
-		},
-		{
-			name: 'deno-outdated',
-			description: 'a tool to check for outdated dependencies in your deno project',
-			href: 'https://github.com/LeoDog896/deno-outdated',
-			type: 'project'
-		}
-	];
+	export let data: PageData;
 </script>
 
 <svelte:head>
@@ -64,7 +27,7 @@
 	<meta name="twitter:description" content="leo's personal blog" />
 </svelte:head>
 
-{#each stuff as { name, description, href, type }}
+{#each data.stuff as { name, description, href, type }}
 	<div class="item">
 		<h2>
 			<!-- svelte-ignore a11y-missing-content -->

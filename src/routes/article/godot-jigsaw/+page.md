@@ -1,6 +1,6 @@
 ---
 title: making a jigsaw puzzle in godot
-description: a guide on how to make a jigsaw puzzle in godot
+description: dynamic object splitting isn't as hard as it sounds
 emojis: 🧩 📘 📖
 date: 2023-02-18
 slug: godot-jigsaw
