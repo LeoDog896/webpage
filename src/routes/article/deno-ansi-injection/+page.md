@@ -1,6 +1,6 @@
 ---
 title: twice-around ansi injection in deno
-description: permission prompts are wonderful, but the modern terminal is powerful too.
+description: permission prompts meet the modern terminal
 emojis: 🦕 🚫 📟
 date: 2023-03-25
 slug: deno-ansi-injection

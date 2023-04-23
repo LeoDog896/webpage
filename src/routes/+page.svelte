@@ -19,7 +19,7 @@
 		},
 		{
 			name: 'Deno & Prompt ANSI manipulation x2',
-			description: 'permission prompts are wonderful, but so is modern terminal',
+			description: 'permission prompts meet the modern terminal',
 			href: 'article/deno-ansi-injection',
 			type: 'security'
 		},
