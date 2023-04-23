@@ -10,8 +10,6 @@ interface DescriptiveLink {
 async function fromArticle(slug: string, type: LinkType) {
 	const article = await import(`./article/${slug}/+page.md`);
 
-	console.log(article)
-
 	return {
 		name: article.metadata.title,
 		href: `article/${slug}`,
