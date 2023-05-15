@@ -4,6 +4,7 @@ description: taking advantage of github pages & jekyll for repo cataloging
 emojis: 📖
 date: 2023-04-22
 slug: github-catalog
+type: project
 ---
 
 Some people in GitHub have [automatic committing](https://github.com/iceBear67/iceBear67/commit/916970d6fa4d8d70c227b8303e5036ded150436a) to show various neat metrics on their README. I quite liked these, but didn't have too much of a usefor them.

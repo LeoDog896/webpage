@@ -4,6 +4,7 @@ description: permission prompts meet the modern terminal
 emojis: 🦕 🚫 📟
 date: 2023-03-25
 slug: deno-ansi-injection
+type: security
 ---
 
 Deno is a wonderful project (and i &amp;lt;3 it). I've been following the project for a few years now, and it is one of my favourite scripting runtimes, even more than python.

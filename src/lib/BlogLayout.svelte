@@ -21,6 +21,9 @@
 	/** @type {string} */
 	export let slug;
 
+	/** @type {string} */
+	export let type;
+
 	$filename = `/src/routes/article/${slug}/+page.md`;
 </script>
 
@@ -49,6 +52,33 @@
 	<meta name="twitter:url" content="https://leodog896.com/article/{slug}" />
 </svelte:head>
 
-<h1>{title} <EmojiSelector emojis={emojis.split(' ')} /></h1>
+<h1 class="type-{type}">{title} <EmojiSelector emojis={emojis.split(' ')} /></h1>
+<h2>{description}</h2>
 
 <slot />
+
+<style>
+	h1 {
+		text-align: center;
+		margin-bottom: 0;
+	}
+
+	h2 {
+		margin-top: 0;
+		text-align: center;
+		color: rgba(0, 0, 0, 0.7);
+		font-size: 1rem;
+	}
+
+	.type-project {
+		color: rgb(11, 92, 222);
+	}
+
+	.type-security {
+		color: rgb(199, 8, 8);
+	}
+
+	.type-article {
+		color: rgb(154, 16, 219);
+	}
+</style>
