@@ -2,6 +2,12 @@
 	import '../app.scss';
 	import { filename } from '$lib/filename';
 	import Header from '$lib/Header.svelte';
+	import { fade } from 'svelte/transition'
+	import { cubicIn, cubicOut } from 'svelte/easing'
+
+	export let data;
+
+	$: pathname = data.pathname;
 </script>
 
 <svelte:head>
@@ -13,9 +19,14 @@
 
 <Header />
 
-<main>
-	<slot />
-</main>
+{#key pathname}
+	<main
+		in:fade={{ easing: cubicOut, duration: 300, delay: 400 }}
+		out:fade={{ easing: cubicIn, duration: 300 }}
+	>
+		<slot />
+	</main>
+{/key}
 
 <footer class="edit-banner">
 	<i
