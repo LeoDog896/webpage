@@ -34,7 +34,10 @@
 	<!-- Meta Tags -->
 	<meta name="description" content={description} />
 	<link rel="canonical" href="https://leodog896.com/article/{slug}" />
-	<meta name="keywords" content="blog, tech, programming, coding, programming article, article, post, LeoDog896" />
+	<meta
+		name="keywords"
+		content="blog, tech, programming, coding, programming article, article, post, LeoDog896"
+	/>
 
 	<!-- Open Graph Meta Tags -->
 	<meta property="og:type" content="article" />

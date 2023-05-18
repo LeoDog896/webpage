@@ -10,9 +10,7 @@
 <svelte:head>
 	<title>leo</title>
 	<meta name="description" content="leo's personal blog" />
-	<meta
-		name="keywords"
-		content="LeoDog896, tech, blog, coding, programming">
+	<meta name="keywords" content="LeoDog896, tech, blog, coding, programming" />
 	<link rel="canonical" href="https://www.leodog896.com/" />
 
 	<!-- Open Graph Meta Tags -->
@@ -30,7 +28,9 @@
 {#each data.stuff as { name, description, href, type }}
 	<div class="item">
 		<h2>
-			<a {href} class={`link-${type}`} title={name + " >>>"} aria-label={name}>{name} &gt;&gt;&gt;</a>
+			<a {href} class={`link-${type}`} title={name + ' >>>'} aria-label={name}
+				>{name}</a
+			>
 		</h2>
 		<p><i>{description}</i></p>
 	</div>
@@ -51,7 +51,7 @@
 	.item:not(:last-child) {
 		margin-bottom: 10px;
 	}
-	
+
 	@media (prefers-color-scheme: dark) {
 		.item {
 			color: white;
@@ -68,7 +68,10 @@
 				position: relative;
 
 				&:hover::after {
-					width: 100%;
+					// we add an extra few pixels here to account for the hover effect.
+					// This is a variable amount of characters since the font here isn't
+					// monospace.
+					width: calc(100% + 3.3ch);
 					bottom: -1px;
 				}
 

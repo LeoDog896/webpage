@@ -2,8 +2,8 @@
 	import '../app.scss';
 	import { filename } from '$lib/filename';
 	import Header from '$lib/Header.svelte';
-	import { fade } from 'svelte/transition'
-	import { cubicIn, cubicOut } from 'svelte/easing'
+	import { fade } from 'svelte/transition';
+	import { cubicIn, cubicOut } from 'svelte/easing';
 
 	export let data;
 

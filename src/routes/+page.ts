@@ -15,18 +15,18 @@ async function fromArticle(slug: string) {
 		href: `article/${slug}`,
 		description: article.metadata.description,
 		type: article.metadata.type
-	}
+	};
 }
 
 const stuff: (Promise<DescriptiveLink> | DescriptiveLink)[] = [
 	fromArticle('github-catalog'),
 	fromArticle('deno-ansi-injection'),
-	fromArticle('godot-jigsaw'),
+	fromArticle('godot-jigsaw')
 ];
 
 /** @type {import('./$types').PageLoad} */
 export async function load() {
-    return {
-        stuff: await Promise.all(stuff)
-    };
+	return {
+		stuff: await Promise.all(stuff)
+	};
 }

@@ -33,7 +33,7 @@ code {
 }
 
 pre > code {
-	padding: .5rem 0rem;
+	padding: 0.5rem 0rem;
 	display: grid;
 }
 
@@ -49,7 +49,6 @@ code > .line::before {
 	color: gray;
 	border-right: 1px solid black;
 }
-
 
 .rehype-code-title {
 	margin-bottom: -0.9rem;
@@ -110,13 +109,13 @@ code[data-line-numbers-max-digits='3'] > .line::before {
 @media (prefers-color-scheme: dark) {
 	pre[data-theme='light'],
 	code[data-theme='light'] {
-	  display: none;
+		display: none;
 	}
-  }
-   
-  @media (prefers-color-scheme: light), (prefers-color-scheme: no-preference) {
+}
+
+@media (prefers-color-scheme: light), (prefers-color-scheme: no-preference) {
 	pre[data-theme='dark'],
 	code[data-theme='dark'] {
-	  display: none;
+		display: none;
 	}
-  }
+}
