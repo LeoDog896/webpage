@@ -30,7 +30,7 @@
 {#each data.stuff as { name, description, href, type }}
 	<div class="item">
 		<h2>
-			<a {href} class={`link-${type}`} title={name + " >>>"}>{name} &gt;&gt;&gt;</a>
+			<a {href} class={`link-${type}`} title={name + " >>>"} aria-label={name}>{name} &gt;&gt;&gt;</a>
 		</h2>
 		<p><i>{description}</i></p>
 	</div>
