@@ -51,6 +51,12 @@
 	.item:not(:last-child) {
 		margin-bottom: 10px;
 	}
+	
+	@media (prefers-color-scheme: dark) {
+		.item {
+			color: white;
+		}
+	}
 
 	a {
 		font-size: 1.5rem;

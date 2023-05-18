@@ -53,4 +53,11 @@
 		max-width: 80ch;
 		padding: 0 2ch;
 	}
+
+	@media (prefers-color-scheme: dark) {
+		.edit-banner {
+			background: #333;
+			color: white;
+		}
+	}
 </style>

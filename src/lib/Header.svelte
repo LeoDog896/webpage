@@ -128,4 +128,28 @@
 		font-size: 1.2rem;
 		margin: 0;
 	}
+
+	@media (prefers-color-scheme: dark) {
+		header {
+			border-bottom: 1px solid #555;
+		}
+
+		.and {
+			background-color: #000;
+			color: #fff;
+			border-bottom: 1px solid #ccc;
+			&:hover {
+				background-color: #fff;
+				color: #000;
+			}
+		}
+
+		.icon {
+			&:hover {
+				opacity: 0.5;
+				transform: rotate(var(--rotate));
+				transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+			}
+		}
+	}
 </style>

@@ -77,7 +77,6 @@ I did have some trouble with pagination, but async generators made it easy to ha
 Now that I had a way to fetch my repositories, I needed a way to generate the catalog. Combined with Jekyll, this was quite easy. I just needed to generate a markdown file with the repositories in it.
 
 ```ts
-
 for await (const page of getRepos()) {
   data.push(page);
 }

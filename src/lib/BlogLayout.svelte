@@ -81,4 +81,14 @@
 	.type-article {
 		color: rgb(154, 16, 219);
 	}
+
+	@media (prefers-color-scheme: dark) {
+		h1 {
+			color: white;
+		}
+
+		h2 {
+			color: rgba(255, 255, 255, 0.7);
+		}
+	}
 </style>
