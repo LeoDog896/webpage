@@ -30,8 +30,7 @@
 {#each data.stuff as { name, description, href, type }}
 	<div class="item">
 		<h2>
-			<!-- svelte-ignore a11y-missing-content -->
-			<a {href} class={`link-${type}`} title={name + ' >>>'} aria-label={name} />
+			<a {href} class={`link-${type}`} title={name} aria-label={name}>{name}</a>
 		</h2>
 		<p><i>{description}</i></p>
 	</div>
@@ -54,8 +53,12 @@
 	}
 
 	a {
+		font-size: 1.5rem;
+		content: attr(title);
+
 		@mixin background-handler($selector, $color) {
 			&.#{$selector} {
+				color: $color;
 				position: relative;
 
 				&:hover::after {
@@ -63,19 +66,8 @@
 					bottom: -1px;
 				}
 
-				// apply bottom: -1px also not during hover as well.
-
 				&::after {
-					width: 0;
-					bottom: -1px;
-				}
-
-				&:before {
-					content: attr(title);
-					color: $color;
-				}
-
-				&::after {
+					font-size: 1.5rem;
 					content: attr(title);
 					position: absolute;
 					left: 0;
