@@ -28,7 +28,7 @@
 		"rehype-code-titles": "^1.2.0",
 		"rehype-pretty-code": "^0.9.4",
 		"sass": "^1.62.0",
-		"shiki": "^0.14.1",
+		"shiki": "^0.14.2",
 		"svelte": "^3.59.1",
 		"svelte-check": "^3.3.2",
 		"svelte-icons": "^2.1.0",
@@ -41,7 +41,7 @@
 	"pnpm": {
 		"patchedDependencies": {
 			"rehype-pretty-code@0.9.4": "patches/rehype-pretty-code@0.9.4.patch",
-			"shiki@0.14.1": "patches/shiki@0.14.1.patch"
+			"shiki@0.14.2": "patches/shiki@0.14.2.patch"
 		}
 	}
 }
