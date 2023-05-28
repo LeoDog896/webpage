@@ -14,7 +14,7 @@
 	}[] = [
 		{
 			icon: DiStackoverflow,
-			href: 'https://stackoverflow.com/users/7589775/leodog896',
+			href: 'https://stackoverflow.com/users/7589775',
 			label: 'Stack Overflow'
 		},
 		{
