@@ -24,7 +24,7 @@ const config = defineConfig({
 					dark: 'github-dark'
 				}
 			}
-		]
+		],
 	]
 });
 

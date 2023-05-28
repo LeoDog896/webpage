@@ -1,0 +1,18 @@
+diff --git a/dist/rehype-pretty-code.js b/dist/rehype-pretty-code.js
+index cb97accbe303c1d75d5f4f8f6c607cb92ba37db8..0af83fa2aabc527f99a6a974f250924311906cff 100644
+--- a/dist/rehype-pretty-code.js
++++ b/dist/rehype-pretty-code.js
+@@ -12908,7 +12908,12 @@ function rehypePrettyCode(options = {}) {
+           });
+         }
+ 
+-        const strippedValue = codeNode.value.replace(/\n$/, '');
++        const strippedValue = codeNode.value.replace(/\n$/, '')
++            .replaceAll(/&lt;/g, '<')
++            .replaceAll(/&gt;/g, '>')
++            .replaceAll(/&#123;/g, '{')
++            .replaceAll(/&#125;/g, '}')
++            .replaceAll(/&amp;/g, '&');
+         const trees = {};
+         for (const [mode, highlighter] of highlighters.entries()) {
+           try {
