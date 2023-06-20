@@ -5,25 +5,32 @@
 	$filename = '/src/routes/+page.svelte';
 
 	export let data: PageData;
+
+	let metaDescription = "hi! i'm leo. i code a lot! particurally in either rust, typescript, and/or svelte. i also like ferrets and cats 🐈";
 </script>
 
 <svelte:head>
 	<title>leo</title>
-	<meta name="description" content="leo's personal blog" />
+	<meta name="description" content={metaDescription} />
 	<meta name="keywords" content="LeoDog896, tech, blog, coding, programming" />
 	<link rel="canonical" href="https://www.leodog896.com/" />
 
 	<!-- Open Graph Meta Tags -->
 	<meta property="og:type" content="website" />
 	<meta property="og:title" content="leodog896.com" />
-	<meta property="og:description" content="leo's personal blog" />
+	<meta property="og:description" content={metaDescription} />
 	<meta property="og:url" content="https://www.leodog896.com/" />
 
 	<!-- Twitter Meta Tags -->
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:title" content="leodog896.com" />
-	<meta name="twitter:description" content="leo's personal blog" />
+	<meta name="twitter:description" content={metaDescription} />
 </svelte:head>
+
+<section id="bio">
+	<h1>hi! i'm leo.</h1>
+	<p>i code a lot! particurally in either rust, <br/>typescript, and/or svelte. i also like ferrets and cats 🐈</p>
+</section>
 
 {#each data.stuff as { name, description, href, type }}
 	<div class="item">
@@ -35,6 +42,18 @@
 {/each}
 
 <style lang="scss">
+	#bio {
+		margin-top: 2rem;
+		border: 1px solid #eee;
+		padding: 1rem;
+		display: inline-block;
+	}
+
+	#bio h1 {
+		margin: 0;
+		font-weight: 400;
+	}
+
 	h2 {
 		margin: 0;
 		margin-top: 1.5rem;
