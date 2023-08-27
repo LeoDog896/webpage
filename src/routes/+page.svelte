@@ -6,7 +6,8 @@
 
 	export let data: PageData;
 
-	let metaDescription = "hi! i'm leo. i code a lot! particurally in either rust, typescript, and/or svelte. i also like ferrets and cats 🐈";
+	let metaDescription =
+		"hi! i'm leo. i code a lot! particurally in either rust, typescript, and/or svelte. i also like ferrets and cats 🐈";
 </script>
 
 <svelte:head>
@@ -29,7 +30,10 @@
 
 <section id="bio">
 	<h1>hi! i'm leo.</h1>
-	<p>i code a lot! particurally in either rust, <br/>typescript, and/or svelte. i also like ferrets and cats 🐈</p>
+	<p>
+		i code a lot! particurally in either rust, <br />typescript, and/or svelte. i also like ferrets
+		and cats 🐈
+	</p>
 </section>
 
 {#each data.stuff as { name, description, href, type }}

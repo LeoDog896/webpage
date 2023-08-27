@@ -78,7 +78,7 @@ for await (const page of getRepos()) {
 const projects = data.filter((repo) => !repo.fork || repo.stargazers_count > 1);
 const forks = data.filter((repo) => repo.fork && repo.stargazers_count <= 1);
 
-function sortRepos(a: typeof data[number], b: typeof data[number]) {
+function sortRepos(a: (typeof data)[number], b: (typeof data)[number]) {
 	const aStars = a.stargazers_count;
 	const bStars = b.stargazers_count;
 	return bStars - aStars;
