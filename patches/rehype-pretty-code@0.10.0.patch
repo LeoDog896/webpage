@@ -1,13 +1,13 @@
 diff --git a/dist/rehype-pretty-code.js b/dist/rehype-pretty-code.js
-index cb97accbe303c1d75d5f4f8f6c607cb92ba37db8..0af83fa2aabc527f99a6a974f250924311906cff 100644
+index 2fe5768c15a210c17eaad74d0e6b6bd4f92a5de2..6e6689cf5498d208a58c0b5214886512a82bd596 100644
 --- a/dist/rehype-pretty-code.js
 +++ b/dist/rehype-pretty-code.js
-@@ -12908,7 +12908,12 @@ function rehypePrettyCode(options = {}) {
-           });
+@@ -11522,7 +11522,12 @@ function rehypePrettyCode(options = {}) {
+         if (!isText(textElement)) {
+           return;
          }
- 
--        const strippedValue = codeNode.value.replace(/\n$/, '');
-+        const strippedValue = codeNode.value.replace(/\n$/, '')
+-        const strippedValue = textElement.value.replace(/\n$/, '');
++        const strippedValue = textElement.value.replace(/\n$/, '')
 +            .replaceAll(/&lt;/g, '<')
 +            .replaceAll(/&gt;/g, '>')
 +            .replaceAll(/&#123;/g, '{')

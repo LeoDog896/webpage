@@ -35,9 +35,10 @@ code {
 pre > code {
 	padding: 0.5rem 0rem;
 	display: grid;
+	overflow: scroll;
 }
 
-code > .line::before {
+code > [data-line]::before {
 	counter-increment: line;
 	content: counter(line);
 

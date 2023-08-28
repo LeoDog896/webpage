@@ -27,7 +27,7 @@
 		"prettier-plugin-svelte": "^2.10.0",
 		"prism-themes": "^1.9.0",
 		"rehype-code-titles": "^1.2.0",
-		"rehype-pretty-code": "^0.9.4",
+		"rehype-pretty-code": "^0.10.0",
 		"sass": "^1.62.0",
 		"shiki": "^0.14.2",
 		"svelte": "^3.59.1",
@@ -41,8 +41,8 @@
 	"type": "module",
 	"pnpm": {
 		"patchedDependencies": {
-			"rehype-pretty-code@0.9.4": "patches/rehype-pretty-code@0.9.4.patch",
-			"shiki@0.14.2": "patches/shiki@0.14.2.patch"
+			"shiki@0.14.2": "patches/shiki@0.14.2.patch",
+			"rehype-pretty-code@0.10.0": "patches/rehype-pretty-code@0.10.0.patch"
 		}
 	}
 }
