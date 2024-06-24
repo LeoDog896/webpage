@@ -33,7 +33,8 @@
 		>this page is open source. found a typo? <a
 			href="https://github.com/LeoDog896/webpage/blob/main{$filename}">edit it!</a
 		></i
-	> otherwise, <a href="/feed">subscribe to my blog!</a>
+	>
+	otherwise, <a href="/feed">subscribe to my blog!</a>
 </footer>
 
 <style>

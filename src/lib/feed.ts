@@ -1,4 +1,4 @@
-import { articles } from "./posts";
+import { articles } from './posts';
 import { Feed } from 'feed';
 
 export const feed = new Feed({
@@ -27,13 +27,13 @@ Promise.all(articles).then((articles) => {
 			id: article.slug,
 			link: `https://leodog896.com/${article.href}`,
 			description: article.description,
-			content: "Not available.",
+			content: 'Not available.',
 			author: [
 				{
 					name: 'Tristan F.',
 					email: 'leodog896@gmail.com',
 					link: 'https://leodog896.com/'
-				},
+				}
 			],
 			date: new Date(article.date)
 		});

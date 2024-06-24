@@ -18,7 +18,7 @@ async function fromArticle(slug: string) {
 		slug,
 		description: article.metadata.description,
 		type: article.metadata.type,
-		date: article.metadata.date,
+		date: article.metadata.date
 	};
 }
 
