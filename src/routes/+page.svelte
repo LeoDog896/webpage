@@ -136,7 +136,7 @@
 					// we add an extra few pixels here to account for the hover effect.
 					// This is a variable amount of characters since the font here isn't
 					// monospace.
-					width: calc(100% + 3.3ch);
+					width: calc(100% + 4ch);
 					bottom: -1px;
 				}
 
