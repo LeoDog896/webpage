@@ -1,5 +1,5 @@
 import { feed } from '$lib/feed';
-import { articles } from '$lib/posts';
+import { articles } from '$lib/articles';
 
 /** @type {import('./$types').RequestHandler} */
 export async function GET() {

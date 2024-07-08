@@ -7,7 +7,7 @@
 	export let data: PageData;
 
 	let metaDescription =
-		"hi! i'm leo. i code a lot! particurally in either rust, typescript, and/or svelte. i also like ferrets and cats 🐈";
+		"hi! i'm leo. i code a lot! particurally in either rust, typescript, and/or svelte. i also like ferrets";
 </script>
 
 <svelte:head>
@@ -28,19 +28,40 @@
 	<meta name="twitter:description" content={metaDescription} />
 </svelte:head>
 
-<section id="bio">
-	<h1>hi! i'm leo.</h1>
-	<p>
-		i code a lot! particurally in either rust, <br />typescript, and/or svelte. i also like ferrets
-		and cats 🐈
-	</p>
-</section>
+<div class="center">
+	<section id="bio">
+		<h1>hi! i'm leo.</h1>
+		<p>
+			i code a lot! particurally in either rust, <br />typescript, and/or svelte. i also like ferrets
+			
+		</p>
+	</section>
+</div>
 
-{#each data.stuff as { name, description, href, type }}
+<h2>Miniblog</h2>
+
+{#each data.posts as { name, href, slug, part, emoji }}
+	<a class="post" {href}>
+		<h3>
+			{emoji} {name}
+			<span class="date">
+				{new Date(parseInt(slug) * 1000).toLocaleDateString()}
+				{#if part}
+					pt. {part}
+				{/if}
+			</span>
+		</h3>
+	</a>
+{/each}
+
+
+<h2>Articles</h2>
+
+{#each data.articles as { name, description, href, type }}
 	<div class="item">
-		<h2>
+		<h3>
 			<a {href} class={`link-${type}`} title={name + ' >>>'} aria-label={name}>{name}</a>
-		</h2>
+		</h3>
 		<p><i>{description}</i></p>
 	</div>
 {/each}
@@ -53,15 +74,38 @@
 		display: inline-block;
 	}
 
+	.post {
+		color: inherit;
+		text-decoration: none;
+		display: block;
+
+		.date {
+			font-size: 1rem;
+			color: gray;
+		}
+	}
+
+	.center {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
 	#bio h1 {
 		margin: 0;
 		font-weight: 400;
 	}
 
-	h2 {
+	h3 {
 		margin: 0;
 		margin-top: 1.5rem;
+		font-size: 1.5rem;
 		font-weight: 400;
+	}
+
+	h2 {
+		font-weight: 900;
+		border-bottom: 1px dashed;
 	}
 
 	p {

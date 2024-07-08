@@ -13,14 +13,18 @@
 	export let title;
 
 	/** @type {string} */
-	export let emoji;
+	export let description;
+
+	/** @type {string} */
+	export let emojis;
 
 	/** @type {string} */
 	export let slug;
 
-	$filename = `/src/routes/miniblog/${slug}/+page.md`;
+	/** @type {string} */
+	export let type;
 
-	$: description = `${emoji} - on ${title}; a mini blog post by leo`
+	$filename = `/src/routes/article/${slug}/+page.md`;
 </script>
 
 <svelte:head>
@@ -51,8 +55,8 @@
 	<meta name="twitter:url" content="https://leodog896.com/article/{slug}" />
 </svelte:head>
 
-<h1>{title} <EmojiSelector emojis={[emoji]} /></h1>
-<h2>a mini blogpost</h2>
+<h1 class="type-{type}">{title} <EmojiSelector emojis={emojis.split(' ')} /></h1>
+<h2>{description}</h2>
 
 <slot />
 
@@ -60,7 +64,6 @@
 	h1 {
 		text-align: center;
 		margin-bottom: 0;
-		color: rgb(180, 11, 222);
 	}
 
 	h2 {
@@ -68,6 +71,18 @@
 		text-align: center;
 		color: rgba(0, 0, 0, 0.7);
 		font-size: 1rem;
+	}
+
+	.type-project {
+		color: rgb(11, 92, 222);
+	}
+
+	.type-security {
+		color: rgb(199, 8, 8);
+	}
+
+	.type-article {
+		color: rgb(154, 16, 219);
 	}
 
 	@media (prefers-color-scheme: dark) {

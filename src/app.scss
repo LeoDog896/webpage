@@ -1,6 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700&family=Roboto:ital,wght@1,900&display=swap');
-
 body {
+	font-family: 'JetBrains Mono Variable', monospace;
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
@@ -8,15 +7,13 @@ body {
 	padding: 0;
 	width: 100%;
 	align-items: center;
-
-	font-family: 'Montserrat', sans-serif;
 	font-weight: 400;
 }
 
 // softer a links
 
 a {
-	color: rgb(21, 124, 0);
+	color: rgb(99, 0, 124);
 	text-decoration: dotted underline;
 }
 
@@ -78,7 +75,7 @@ code[data-line-numbers-max-digits='3'] > .line::before {
 	}
 
 	a {
-		color: rgb(0, 124, 21);
+		color: rgb(185, 26, 185);
 	}
 
 	.rehype-code-title {

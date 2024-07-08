@@ -9,7 +9,10 @@ const config = defineConfig({
 		dashes: 'oldschool'
 	},
 
-	layout: './src/lib/BlogLayout.svelte',
+	layout: {
+		article: './src/lib/ArticleLayout.svelte',
+		blog: './src/lib/BlogLayout.svelte',
+	},
 
 	highlight: false,
 

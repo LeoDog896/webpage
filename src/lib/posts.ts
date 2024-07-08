@@ -1,29 +1,23 @@
-type LinkType = 'project' | 'security' | 'article';
-
-interface DescriptiveLink {
+interface PostMetadata {
 	name: string;
 	href: string;
 	slug: string;
-	description: string;
-	type: LinkType;
-	date: string;
+	emoji: string;
+	part?: number | undefined;
 }
 
-async function fromArticle(slug: string) {
-	const article = await import(`../routes/article/${slug}/+page.md`);
+async function fromPost(slug: string) {
+	const article = await import(`../routes/miniblog/${slug}/+page.md`);
 
 	return {
 		name: article.metadata.title,
-		href: `article/${slug}`,
+		href: `miniblog/${slug}`,
 		slug,
-		description: article.metadata.description,
-		type: article.metadata.type,
-		date: article.metadata.date
+		emoji: article.metadata.emoji,
+		part: article.metadata.part ?? undefined
 	};
 }
 
-export const articles: (Promise<DescriptiveLink> | DescriptiveLink)[] = [
-	fromArticle('github-catalog'),
-	fromArticle('deno-ansi-injection'),
-	fromArticle('godot-jigsaw')
+export const posts: (Promise<PostMetadata> | PostMetadata)[] = [
+	fromPost('1720402417')
 ];

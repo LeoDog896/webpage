@@ -1,4 +1,4 @@
-import { articles } from './posts';
+import { articles } from './articles';
 import { Feed } from 'feed';
 
 export const feed = new Feed({

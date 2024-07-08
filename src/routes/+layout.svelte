@@ -1,4 +1,5 @@
 <script>
+	import '@fontsource-variable/jetbrains-mono';
 	import '../app.scss';
 	import { filename } from '$lib/filename';
 	import Header from '$lib/Header.svelte';
@@ -28,17 +29,16 @@
 	</main>
 {/key}
 
-<footer class="edit-banner">
+<footer>
 	<i
-		>this page is open source. found a typo? <a
+		>this site is open source. found a typo? <a
 			href="https://github.com/LeoDog896/webpage/blob/main{$filename}">edit it!</a
 		></i
 	>
-	otherwise, <a href="/feed">subscribe to my blog!</a>
 </footer>
 
 <style>
-	.edit-banner {
+	footer {
 		position: fixed;
 		bottom: 0;
 		left: 0;
@@ -56,7 +56,7 @@
 	}
 
 	@media (prefers-color-scheme: dark) {
-		.edit-banner {
+		footer {
 			background: #333;
 			color: white;
 		}

@@ -5,6 +5,7 @@ emojis: 🧩 📘 📖
 date: 2023-02-18
 slug: godot-jigsaw
 type: article
+layout: article
 ---
 
 This problem confused me for a bit, but luckily, godot makes splitting a puzzle piece pretty simple.
