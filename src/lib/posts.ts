@@ -18,6 +18,15 @@ async function fromPost(slug: string) {
 	};
 }
 
-export const posts: (Promise<PostMetadata> | PostMetadata)[] = [
-	fromPost('1720402417')
-];
+function noSlug(key: string): never {
+	throw new Error(`Slug not found in ${key}.`);
+}
+
+function getSlugs(): string[] {
+	return Object.keys(import.meta.glob('../routes/miniblog/*/+page.md'))
+		.map(key => key.match(/\.\.\/routes\/miniblog\/(\d+)/)?.[1] ?? noSlug(key))
+		.map(key => parseInt(key))
+		.sort((a, b) => b - a);
+}
+
+export const posts: (Promise<PostMetadata> | PostMetadata)[] = getSlugs().map(fromPost)
