@@ -186,7 +186,7 @@ theorem test {p q : Prop} (hp : p) (hq : q) : (p ∧ p ∧ p ∧ p ∧ p ∧ p) 
 ```
 
 However, this stylistic use of `refine` is particurally useful in the much more complicated case: If you have an inductive
-type that you need to break down, where one side is trivial and the other side is not, then `refine` is always your friend:
+type that you need to break down, where one side is trivial and the other side is not, then `refine` is always your friend*:
 
 ```lean4
 def collatz_next (n : Nat) : Nat :=
@@ -201,3 +201,5 @@ theorem collatz_and_p {p : Prop} (hp : p) : p ∧ ∀ n, 0 < n → ∃ k, iter k
   refine ⟨hp, ?_⟩
   sorry -- this joke was stolen (and slightly modified) from https://learnxinyminutes.com/lean4/
 ```
+
+*ERATTA: `refine` has much more use than just proving other sides of conjunctions. 
