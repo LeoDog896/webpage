@@ -13,32 +13,32 @@
 	or published in one of my repositories that specifies a license.
 </p>
 
-<h2>bounties</h2>
+{#if hasPrivilege($currentPrivileges, 'info')}
+    <h2>bounties</h2>
 
-<p>
-	<i>note:</i> these don't actually have rewards. at all. if you have an idea for any of these, let me
-	know somehow!
-</p>
+    <p>
+        <i>note:</i> these don't actually have rewards. at all. if you have an idea for any of these, let me
+        know somehow!
+    </p>
 
-<details>
-	<summary>give playful webpage suggestions!</summary>
-	<div>
-		<p>
-			I'm decent at making professional websites. I'm consistent with it, I'm used to it, but I
-			really, truly, do not want this website to be professional, as I do not even enjoy the
-			professional website style.
-		</p>
+    <details>
+        <summary>give playful webpage suggestions!</summary>
+        <div>
+            <p>
+                I'm decent at making professional websites. I'm consistent with it, I'm used to it, but I
+                really, truly, do not want this website to be professional, as I do not even enjoy the
+                professional website style.
+            </p>
 
-		<p>
-			However, that also means that this website ends up being a weird bleed of attempting to be
-			playful and weirdly professional anyway. I can't even find a good font. I will take
-			suggestions.
-			<Treasure id="6fb61eb9-91bd-4bfa-a1e2-1082108de25b">Please</Treasure>.
-		</p>
-	</div>
-</details>
+            <p>
+                However, that also means that this website ends up being a weird bleed of attempting to be
+                playful and weirdly professional anyway. I can't even find a good font. I will take
+                suggestions.
+                <Treasure id="6fb61eb9-91bd-4bfa-a1e2-1082108de25b">Please</Treasure>.
+            </p>
+        </div>
+    </details>
 
-{#if $uuids.length !== 0 || $optedOut}
 	<details>
 		<summary>better place to put the orange progress bar</summary>
 
@@ -57,9 +57,7 @@
 			</p>
 		</div>
 	</details>
-{/if}
 
-{#if hasPrivilege($currentPrivileges, 'info')}
 	<h2>outlinks</h2>
 
 	<!-- go forth and find my email -->

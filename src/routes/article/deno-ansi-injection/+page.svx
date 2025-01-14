@@ -12,7 +12,7 @@ layout: article
 	import Treasure from '$lib/Treasure.svelte'
 </script>
 
-_Note from January 14th, 2025_: I still use Deno for scripting.
+_Note from January 14th, 2025_: I still use Deno for scripting. Also, I missed a vulnerability found later independently by both [SecFault Security](https://secfault-security.com/blog/deno.html) and [RyotaK](https://x.com/ryotkak).
 
 Deno is a wonderful project (and i &amp;lt;3 it). I've been following the project for a few years now, and it is one of my favourite scripting runtimes, even more than python.
 It's a great way to run TypeScript (and, unfortunately, JavaScript) code on the server side, and its package model + permission system proves extremely powerful.
