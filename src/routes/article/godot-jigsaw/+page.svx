@@ -1,6 +1,6 @@
 ---
-title: making a jigsaw puzzle in godot
-description: dynamic object splitting isn't as hard as it sounds
+title: Making a Jigsaw Puzzle in Godot
+description: dynamic object splitting is simple!
 emojis: 🧩 📘 📖
 date: 2023-02-18
 slug: godot-jigsaw
@@ -8,15 +8,22 @@ type: article
 layout: article
 ---
 
+<script>
+	import ImgComponent from '$lib/ImgComponent.svelte'
+	import Treasure from '$lib/Treasure.svelte'
+</script>
+
+_Note from January 14th, 2025_: These are not smooth jigsaw pieces! I wanted this specifically so I could physically move them around. This will probably not help you!
+
 This problem confused me for a bit, but luckily, godot makes splitting a puzzle piece pretty simple.
 
-> note: for simplicity, I'll be using rectangular pegs, but the same principles apply to any shape. If you want to make a PR to the example project demonstrating a different shape, I'd be happy to merge it.
+> Note: for simplicity, I'll be using rectangular pegs, but the same principles apply to any shape. If you want to make a PR to the example project demonstrating a different shape, I'd be happy to merge it.
 
 You can find the entire project [here (LeoDog896/godot-jigsaw)](https://github.com/LeoDog896/godot-jigsaw).
 
 I'll be using this silly ferret image:
 
-![ferret yawning on a blue blanket](/godot-jigsaw/ferret.jpg)
+<ImgComponent src="/godot-jigsaw/ferret.jpg" alt="ferret yawning on a blue blanket" />
 
 ## layout
 
@@ -43,9 +50,11 @@ enum HingeState {
 
 ## generating the piece orientation
 
-we'll attatch a script to the `Puzzle.tscn` scene, allowing it to take in a Texture and the number of rows and columns to split the image into multiple pieces.
+<!-- good idea! yeah lets just dump like 300 lines of undocumented code on the viewer. huge jumpscare -->
 
-we can pass down the context info to the puzzle pieces, so that the puzzle pieces themselves can be created independently.
+We'll attach a script to the `Puzzle.tscn` scene, allowing it to take in a Texture and the number of rows and columns to split the image into multiple pieces.
+
+We can pass down the context info to the puzzle pieces, so that the puzzle pieces themselves can be created independently.
 
 ```gdscript
 extends Node2D
@@ -80,7 +89,7 @@ func _ready():
 		add_child(piece)
 ```
 
-we also need to track the neighbors of the puzzle pieces so we can generate the hinges for the piece, so we can make a `pieces` array and add it to the scene at the end:
+We also need to track the neighbors of the puzzle pieces so we can generate the hinges for the piece, so we can make a `pieces` array and add it to the scene at the end:
 
 ```gdscript
 extends Node2D
@@ -138,7 +147,8 @@ func _ready():
 
 We'll make a new scene, `puzzle/PuzzlePiece.tscn`, that is a Polygon2D (so we can use the texture property) with a script attached to it.
 
-from our earlier script above, lets first capture our exported variables. Instead of using a dictionary for the hinges, we'll use an enum, so we can use the editor UI to easily set the values instead of dealing with dictionary editing.
+From our earlier script above, lets first capture our exported variables. Instead of using a dictionary for the hinges,
+we'll use an enum, so we can use the editor UI to easily set the values instead of dealing with dictionary editing.
 
 ```gdscript
 extends Polygon2D
@@ -163,7 +173,8 @@ export(HingeState) var right_hinge = HingeState.NONE
 export(HingeState) var bottom_hinge = HingeState.NONE
 ```
 
-next, we can begin generating the hinge. I'll be using rectangular hinges, but this can be adapted for any hinge:
+<!-- this gave me a chuckle -->
+Next, we can begin generating the hinge. <Treasure id="af0d1a41-7327-4ee0-8401-7f4e5cce1fd5">I'll be using rectangular hinges, but this can be adapted for any hinge:</Treasure>
 
 ```gdscript
 func hinge(type: int, direction: Vector2) -> PoolVector2Array:
@@ -188,7 +199,7 @@ func hinge(type: int, direction: Vector2) -> PoolVector2Array:
 	return pool
 ```
 
-we can then use this function to generate the hinges for each side of the puzzle piece:
+We can then use this function to generate the hinges for each side of the puzzle piece:
 
 ```gdscript
 func _ready() -> void:
@@ -200,7 +211,7 @@ func _ready() -> void:
 	)
 ```
 
-and finally, we can map each vertex to a UV coordinate so we can use the texture:
+Finally, we can map each vertex to a UV coordinate so we can use the texture:
 
 ```gdscript
 func _ready() -> void:
@@ -225,7 +236,7 @@ func _ready() -> void:
 	uv = local_uv
 ```
 
-all in all, we get this final code:
+We get this final code:
 
 ```gdscript
 extends Polygon2D
@@ -297,9 +308,9 @@ func _ready() -> void:
 	uv = local_uv
 ```
 
-and there you have it! To demonstrate, I've changed the `piece.position = ` setter to multiply by 3 so you can see each individual jigsaw piece:
+To demonstrate, I've changed the `piece.position = ` setter to multiply by 3 so you can see each individual jigsaw piece:
 
-![The final puzzle picture split into different pieces.](/godot-jigsaw/final-picture.png)
+<ImgComponent src="/godot-jigsaw/final-picture.png" alt="The final puzzle picture split into different pieces." />
 
 ## failed attempts
 
@@ -309,8 +320,9 @@ I also tried using a [Sprite](https://docs.godotengine.org/en/stable/classes/cla
 
 When I was testing out the main solution, I made the inadvertent assumption that the origin `(0, 0)` for the texture was on the bottom left:
 
-![Deformed ferret puzzle](/godot-jigsaw/failed-row-col.png)
+<ImgComponent src="/godot-jigsaw/failed-row-col.png" alt="Deformed ferret puzzle" />
 
 ### hell in non-square images
 
-my original code for another game project involved only square images - when I went to adapt it to non-square images, I quickly realized I was using width and height interchangeably, _everywhere_, so I spent (give or take) 2 hours trying to figure out why the puzzle pieces were all over the place.
+<!-- atalii would NOT admit to this -->
+My original code for another game project involved only square images - when I went to adapt it to non-square images, I quickly realized I was using width and height interchangeably, _everywhere_, <Treasure id="2ba29f47-a3bc-44d6-8001-c38b055d4eff">so I spent (give or take) 2 hours</Treasure> trying to figure out why the puzzle pieces were all over the place.

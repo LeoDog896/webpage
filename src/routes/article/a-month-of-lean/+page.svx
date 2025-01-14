@@ -1,0 +1,201 @@
+---
+title: "The refine tactic: a month of Lean4"
+description: surely there were worse uses for a winter break
+emojis: 📅
+date: 2025-01-14
+slug: a-month-of-lean
+type: article
+layout: article
+---
+
+<script>
+	import Treasure from '$lib/Treasure.svelte'
+</script>
+
+Before last month, I barely used Lean4. I [completed the Natural Number Game](https://adam.math.hhu.de/#/g/leanprover-community/NNG4)
+and the [Logic Game](https://adam.math.hhu.de/#/g/trequetrum/lean4game-logic),
+but otherwise I only upstreamed a typo fix and a single golfed proof.
+
+While that status has not changed for the most part, (I upstreamed some more proofs and definitions since then,
+but I've otherwise kept to my own local projects) I've been trying to develop a local theory of thermography from
+Combinatorial Game Theory, using [Aaron Siegel's Combinatorial Game Theory](https://bookstore.ams.org/view?ProductCode=GSM/146) as a reference.
+(By the way, if you want a good, proof-based overview of the current field status of CGT, I could not recommend this book more.)
+
+However, instead of talking about that project, I would like to talk about `refine`:
+
+When I was first properly getting started in formalization, I referenced a few tactic guides. One of the more useful ones was
+["A Beginner's Companion to Theorem Proving in Lean 4"](https://emallson.net/blog/a-beginners-companion-to-theorem-proving-in-lean/)
+from [J. David Smith](https://emallson.net/). It was succinct, and gave a good clarifying overview of tactics I remember using from <abbr>NNG4</abbr>
+(the Natural Number Game 4) and the Logic Game. However, when I went to upstream proofs, I found that the
+proofs that I was making were factors larger than the existing ones.
+
+## Breaking Down Goals
+
+There are two main categories as to how you approach formalization:
+
+- 'Forward' reasoning: Create hypotheses that support your goal.
+- 'Backward' reasoning: Break your goal down to your hypotheses.
+
+While these are also ways that <abbv>ATPs</abbv> (Automated Theorem Provers) work, we'll focus on the stylistic
+differences between the two, and how `refine` can help.
+
+You can directly see the difference between the two in the ways that goals are reasoned with. For example,
+take a theorem that two hypotheses `p` and `q` imply that `p ∧ q`:
+
+```lean4
+theorem test {p q : Prop} (hp : p) (hq : q) : p ∧ q := sorry
+```
+
+We can prove this by explicitly _constructing_ our conjunction:
+
+```lean4
+theorem test {p q : Prop} (hp : p) (hq : q) : p ∧ q := by
+  exact And.intro hp hq
+```
+
+Or, we can prove this by `apply`ing `And.intro` and proving each goal separately (thus, _breaking_ down the goal)
+
+```lean4
+theorem test {p q : Prop} (hp : p) (hq : q) : p ∧ q := by
+  apply And.intro
+  · exact hp
+  · exact hq
+```
+
+While the forward-reasoning proof is concise, the backwards-reasoning proof preserves readability for larger proofs.
+For this small case, the forward-reasoning proof is the clear winner, as `And.intro hp hq` can be golfed to be
+`⟨hp, hq⟩` using anonymous constructor notation.
+
+However, for larger proofs such as: (this example is pulled from the [1962 Q1 IMO formalization](https://github.com/leanprover-community/mathlib4/blob/30b9d3c060c068cd5c82676bbab08f239b7a03de/Archive/Imo/Imo1962Q1.lean#L38-L47))
+
+```lean4
+lemma without_digits {n : ℕ} (hn : ProblemPredicate n) : ∃ c : ℕ, ProblemPredicate' c n := by
+  use n / 10
+  cases' n with n
+  · have hpp : ¬ProblemPredicate 0 := by norm_num [ProblemPredicate]
+    contradiction
+  · rw [ProblemPredicate, digits_def' (by decide : 2 ≤ 10) n.succ_pos, List.headI, List.tail_cons,
+      List.concat_eq_append] at hn
+    constructor
+    · rw [← hn.left, div_add_mod (n + 1) 10]
+    · rw [← hn.right, ofDigits_append, ofDigits_digits, ofDigits_singleton, add_comm, mul_comm]
+```
+
+The explicit use of `constructor` here (which is a tactic that applies the first matching inductive constructor)
+offers readability to the proof by clearly declaring its intent to prove two separate goals. The alternative would
+have been:
+
+```lean4
+lemma without_digits {n : ℕ} (hn : ProblemPredicate n) : ∃ c : ℕ, ProblemPredicate' c n := by
+  use n / 10
+  cases' n with n
+  · have hpp : ¬ProblemPredicate 0 := by norm_num [ProblemPredicate]
+    contradiction
+  · rw [ProblemPredicate, digits_def' (by decide : 2 ≤ 10) n.succ_pos, List.headI, List.tail_cons,
+      List.concat_eq_append] at hn
+    exact ⟨
+      by rw [← hn.left, div_add_mod (n + 1) 10],
+      by rw [← hn.right, ofDigits_append, ofDigits_digits, ofDigits_singleton, add_comm, mul_comm]
+    ⟩
+```
+
+While this is quite similar, the use of `by` (which enters tactic mode inside the anonymous constructor subexpressions)
+is quite a roundabout way of achieving the same goal.
+
+However, lets take a more interesting example:
+
+For the sake of brevity, (since the places I find these uses of `refine` are in larger proofs, which is to be expected)
+this example is very artificial. We'll pretend that the left side of the conjunction here is a very complex goal.
+
+<!-- really funny to read post write. honestly keeping it -->
+
+```lean4
+theorem test {p q : Prop} (hp : p) (hq : q) : (p ∧ p ∧ p ∧ p ∧ p ∧ p) ∧ q := sorry
+```
+
+We have a conjunction, where one side is demanding a lot more attention than the other. If we write with either style:
+
+```lean4
+-- Break down our main goal
+theorem test {p q : Prop} (hp : p) (hq : q) : (p ∧ p ∧ p ∧ p ∧ p ∧ p) ∧ q := by
+  apply And.intro
+  · exact ⟨hp, hp, hp, hp, hp, hp⟩
+  · exact hq
+```
+
+```lean4
+-- Construct to our main goal
+theorem test {p q : Prop} (hp : p) (hq : q) : (p ∧ p ∧ p ∧ p ∧ p ∧ p) ∧ q := by
+  exact ⟨⟨hp, hp, hp, hp, hp, hp⟩, hq⟩
+```
+
+We have this clunky weight difference between the two sides: one side is easier to prove than the other.
+
+## Refine
+
+For about the first week of the time I dedicated to learning Lean4 and watching House M.D.,
+I only used `refine` for golfing, without a clear understanding of exactly how the goal worked.
+
+`refine` acts like `exact`, but it allows a user to add ['synthetic holes'](https://lean-lang.org/doc/reference/latest/Terms/Holes/#Lean___Parser___Term___hole) to
+the term they wish to use.
+
+> Note: Non-synthetic (regular) holes are filled via unification, a process in which information from the target goal
+and information from the context of the definition are used to infer what the term at the hole should be. This is
+especially useful for types, where one can use `_` in place of a variable name when it is obvious to the compiler
+what should go there.
+
+For example, one could use `refine` exactly like `constructor` in our previous artificial example:
+
+```lean4
+theorem test {p q : Prop} (hp : p) (hq : q) : p ∧ q := by
+  refine And.intro ?l ?r
+  case l => exact hp
+  case r => exact hq
+```
+
+where `l` and `r` are named synthetic holes that are created and are added to the proof context as new goals.
+One could also make them unnamed holes where `·` (`cdot`) can be used to prove each goal one-by-one instead: 
+
+```lean4
+theorem test {p q : Prop} (hp : p) (hq : q) : p ∧ q := by
+  refine And.intro ?_ ?_
+  · exact hp
+  · exact hq
+```
+
+A helpful use of this, though, is to fix our stylistic issue:
+
+Returning to our more complicated, but artificial, example, is to prove this
+by breaking the goal down, filling one hole implicitly, and filling the other hole explicitly:
+
+```lean4
+theorem test {p q : Prop} (hp : p) (hq : q) : (p ∧ p ∧ p ∧ p ∧ p ∧ p) ∧ q := by
+  refine ⟨?_, hq⟩
+  exact ⟨hp, hp, hp, hp, hp, hp⟩
+```
+
+There! Isn't that nice?
+
+The actual way I would show this is to explicitly construct it as shown:
+
+```lean4
+theorem test {p q : Prop} (hp : p) (hq : q) : (p ∧ p ∧ p ∧ p ∧ p ∧ p) ∧ q :=
+  ⟨⟨hp, hp, hp, hp, hp, hp⟩, hq⟩
+```
+
+However, this stylistic use of `refine` is particurally useful in the much more complicated case: If you have an inductive
+type that you need to break down, where one side is trivial and the other side is not, then `refine` is always your friend:
+
+```lean4
+def collatz_next (n : Nat) : Nat :=
+  if n % 2 = 0 then n / 2 else 3 * n + 1
+
+def iter (k : Nat) (f : Nat → Nat) :=
+  match k with
+  | Nat.zero => fun x => x
+  | Nat.succ k' => fun x => f (iter k' f x)
+
+theorem collatz_and_p {p : Prop} (hp : p) : p ∧ ∀ n, 0 < n → ∃ k, iter k collatz_next n = 1 := by
+  refine ⟨hp, ?_⟩
+  sorry -- this joke was blatantly stolen from https://learnxinyminutes.com/lean4/
+```

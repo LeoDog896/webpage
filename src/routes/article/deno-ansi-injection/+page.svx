@@ -8,6 +8,12 @@ type: security
 layout: article
 ---
 
+<script>
+	import Treasure from '$lib/Treasure.svelte'
+</script>
+
+_Note from January 14th, 2025_: I still use Deno for scripting.
+
 Deno is a wonderful project (and i &amp;lt;3 it). I've been following the project for a few years now, and it is one of my favourite scripting runtimes, even more than python.
 It's a great way to run TypeScript (and, unfortunately, JavaScript) code on the server side, and its package model + permission system proves extremely powerful.
 
@@ -15,7 +21,7 @@ However, the project for me served as a good start on my first few CVEs.
 
 ## Deno's permission system
 
-Deno, by default, is secure. Deno doesn't make guarantees on runtime resources (CPU, RAM), but it does make guarantees on external access or permenant storage.
+Deno, by default, is secure. Deno doesn't make guarantees on runtime resources (CPU, RAM), but it does make guarantees on external access or permanent storage.
 
 For example, if a malicious script you ran (maybe `deno run https://example.com/malicious-script.ts`) tried to access the file system, it would be denied. This is because Deno's default permissions don't allow for:
 
@@ -45,11 +51,11 @@ and they're a great way to do things like offload CPU intensive tasks to a separ
 
 At the time, I was trying to fetch some data from my main file asynchronously, and wanted to see how well it worked with web workers.
 
-```ts:worker.ts
+```ts
 console.log('hello from worker');
 ```
 
-```ts:main.ts
+```ts
 const worker = new Worker(new URL('worker.ts', import.meta.url).href, {
 	type: 'module'
 });
@@ -57,7 +63,7 @@ const worker = new Worker(new URL('worker.ts', import.meta.url).href, {
 const request = await fetch('https://example.com/api/cat-pics');
 ```
 
-```sh
+```
 $ deno run --allow-net main.ts
 ```
 
@@ -65,7 +71,7 @@ This worked great! I was able to fetch data from the internet, and I was able to
 
 However, when running it again, I forgot to include `--allow-net`, leading to this interesting prompt:
 
-```sh
+```
 ┌ ⚠️  Deno requests net access to "example.com".
 ├ Requested by `fetch()` API
 ├ Run again with --allow-net to bypass this prompt.
@@ -75,11 +81,13 @@ hello from worker
 
 At first, I didn't think much of it. I simply assumed the web worker was just running after, and the network request took a bit to kick in, and that it was just printing out the message.
 
-However, from my previous work with direct ANSI codes (as I wanted to know how terminal colors were displayed), I knew that you could use ANSI codes to move the cursor around, and I knew that you could use ANSI codes to clear the screen.
+<!-- why did i write it like this -->
+However, <Treasure id="d545762b-e4a2-4531-888b-84bc4e75eb7b">from my previous work with ANSI codes</Treasure> (as I wanted to know how terminal colors were displayed),
+I knew that you could use ANSI codes to move the cursor around, and I knew that you could use ANSI codes to clear the screen.
 
 So, I decided to try it out.
 
-```ts:worker.ts
+```ts
 console.clear();
 console.log(`
 ┌ ⚠️  Deno requests net access to "deno.land".
@@ -89,7 +97,7 @@ console.log(`
 `);
 ```
 
-```ts:main.ts
+```ts
 const worker = new Worker(new URL('worker.ts', import.meta.url).href, {
 	type: 'module'
 });
@@ -97,7 +105,7 @@ const worker = new Worker(new URL('worker.ts', import.meta.url).href, {
 const request = await fetch('https://example.com/api/malicious-fetch-fingerprint');
 ```
 
-```sh
+```
 deno run main.ts
 ```
 
@@ -113,7 +121,7 @@ Then, looking at the permission prompt (from my previous CVE), I noticed that it
 
 Here was the template for the permission prompt:
 
-```sh
+```
 ┌ ⚠️  Deno requests ${type} access to ${scope}.
 ├ Requested by `${api}` API
 ├ Run again with --allow-${type} to bypass this prompt.
@@ -154,7 +162,3 @@ Deno[Deno.internal].core.ops.op_spawn_child(
 Once again, this allowed me to spoof the prompt, providing another way to get a user to accidentally grant permissions to a malicious script.
 
 This is now [GHSA-vq67-rp93-65qf](https://github.com/denoland/deno/security/advisories/GHSA-vq67-rp93-65qf), or [CVE-2023-28446](https://nvd.nist.gov/vuln/detail/CVE-2023-28446) ([snyk](https://security.snyk.io/vuln/SNYK-RUST-DENORUNTIME-3373053))
-
-## tips
-
-dig into stuff, if it looks interesting, and try it out. You never know what you might find.

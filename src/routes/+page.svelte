@@ -1,172 +1,107 @@
 <script lang="ts">
-	import type { PageData } from './$types';
-	import { filename } from '$lib/filename';
+    import Treasure, { uuids, hasPrivilege, currentPrivileges } from "$lib/Treasure.svelte";
+	import { onMount } from "svelte";
 
-	$filename = '/src/routes/+page.svelte';
+    let showHint = $state(false);
 
-	export let data: PageData;
-
-	let metaDescription =
-		"hi! i'm leo. i code a lot! particurally in either rust, typescript, and/or svelte. i also like ferrets";
+    onMount(() => {
+        setTimeout(() => {
+            showHint = true;
+        }, 5000)
+    });
 </script>
 
-<svelte:head>
-	<title>leo</title>
-	<meta name="description" content={metaDescription} />
-	<meta name="keywords" content="LeoDog896, tech, blog, coding, programming" />
-	<link rel="canonical" href="https://www.leodog896.com/" />
+<h1>hi! i'm <Treasure id="4dbd2da1-0880-4663-bfc7-d3d977b029b2">tristan</Treasure>!</h1>
 
-	<!-- Open Graph Meta Tags -->
-	<meta property="og:type" content="website" />
-	<meta property="og:title" content="leodog896.com" />
-	<meta property="og:description" content={metaDescription} />
-	<meta property="og:url" content="https://www.leodog896.com/" />
+<p>
+    Here's where I keep my writings. I love ferrets*, despise LLMs*, and
+    complain quite often about JavaScript quirks*.
+</p>
 
-	<!-- Twitter Meta Tags -->
-	<meta name="twitter:card" content="summary" />
-	<meta name="twitter:title" content="leodog896.com" />
-	<meta name="twitter:description" content={metaDescription} />
-</svelte:head>
+<h2>bounties</h2>
 
-<div class="center">
-	<section id="bio">
-		<h1>hi! i'm leo.</h1>
-		<p>
-			i code a lot! particurally in either rust, <br />typescript, and/or svelte. i also like ferrets
-			
-		</p>
-	</section>
-</div>
+<p><i>note:</i> these don't actually have rewards. at all.</p>
 
-<h2>Miniblog</h2>
+<details>
+    <summary>give playful webpage suggestions!</summary>
+    <p>
+        I'm decent at making professional websites. I'm consistent with it, I'm used to it, but I really, truly,
+        do not want this website to be professional, as I do not even enjoy the professional website style.
+    </p>
 
-{#each data.posts as { name, href, slug, part, emoji }}
-	<a class="post" {href}>
-		<h3>
-			{emoji} {name}
-			<span class="date">
-				{new Date(parseInt(slug) * 1000).toLocaleDateString()}
-				{#if part}
-					pt. {part}
-				{/if}
-			</span>
-		</h3>
-	</a>
-{/each}
+    <p>
+        However, that also means that this website ends up being a weird bleed of attempting to be playful
+        and weirdly professional anyway. I can't even find a good font. I will take suggestions.
+        <Treasure id="6fb61eb9-91bd-4bfa-a1e2-1082108de25b">Please</Treasure>.
+    </p>
+</details>
 
+{#if $uuids.length !== 0}
+    <details>
+        <summary>better place to put the orange progress bar</summary>
 
-<h2>Articles</h2>
+        <p>the place it is right now is a huge violation of jakob's law.</p>
+    </details>
+{/if}
 
-{#each data.articles as { name, description, href, type }}
-	<div class="item">
-		<h3>
-			<a {href} class={`link-${type}`} title={name + ' >>>'} aria-label={name}>{name}</a>
-		</h3>
-		<p><i>{description}</i></p>
-	</div>
-{/each}
+{#if hasPrivilege($currentPrivileges, "info")}
+    <h2>outlinks</h2>
+
+    <!-- go forward and find my email -->
+
+    <ul>
+        <li><a href="https://github.com/LeoDog896">github</a></li>
+        <li><a href="https://people.reed.edu/~tristanf/">empty academic website</a></li>
+    </ul>
+{/if}
+
+<h2>featured posts</h2>
+
+<i>none yet.</i>
+
+{#if showHint && $uuids.length === 0}
+    <p><i>that's odd. you've been on this page for 5 seconds and you haven't clicked a single orange link yet!</i></p>
+{/if}
+
+{#if hasPrivilege($currentPrivileges, "technicalPosts")}
+    <h2>
+        all posts{#if !hasPrivilege($currentPrivileges, "allPosts")}*{/if}
+    </h2>
+
+    <div class="posts">
+        <div class="post">
+            <p>2025-01-14</p>
+            <a href="/article/a-month-of-lean">The refine tactic: a month of lean4</a>
+        </div>
+        <div class="post">
+            <p>2023-04-22</p>
+            <a href="/article/github-catalog">Automatic GitHub Catalog Generation</a>
+        </div>
+        <div class="post">
+            <p>2023-03-25</p>
+            <a href="/article/deno-ansi-injection">2 ANSI injection vulnerabilities in Deno</a>
+        </div>
+        <div class="post">
+            <p>2023-02-18</p>
+            <a href="/article/godot-jigsaw">Making a Jigsaw Puzzle in Godot</a>
+        </div>
+    </div>
+{/if}
 
 <style lang="scss">
-	#bio {
-		margin-top: 2rem;
-		border: 1px solid #eee;
-		padding: 1rem;
-		display: inline-block;
-	}
+    .post {
+        p {
+            margin-bottom: 0.5ch;
+            font-size: 1.5rem;
+            color: #7D8491;
+        }
 
-	.post {
-		color: inherit;
-		text-decoration: none;
-		display: block;
-
-		.date {
-			font-size: 1rem;
-			color: gray;
-		}
-	}
-
-	.center {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-
-	#bio h1 {
-		margin: 0;
-		font-weight: 400;
-	}
-
-	h3 {
-		margin: 0;
-		margin-top: 1.5rem;
-		font-size: 1.5rem;
-		font-weight: 400;
-	}
-
-	h2 {
-		font-weight: 900;
-		border-bottom: 1px dashed;
-	}
-
-	p {
-		margin-bottom: 0;
-		margin-top: 0.5rem;
-	}
-
-	.item:not(:last-child) {
-		margin-bottom: 10px;
-	}
-
-	@media (prefers-color-scheme: dark) {
-		.item {
-			color: white;
-		}
-	}
-
-	a {
-		font-size: 1.5rem;
-		content: attr(title);
-
-		@mixin background-handler($selector, $color) {
-			&.#{$selector} {
-				color: $color;
-				position: relative;
-
-				&:hover::after {
-					// we add an extra few pixels here to account for the hover effect.
-					// This is a variable amount of characters since the font here isn't
-					// monospace.
-					width: calc(100% + 4ch);
-					bottom: -1px;
-				}
-
-				&::after {
-					font-size: 1.5rem;
-					content: attr(title);
-					position: absolute;
-					left: 0;
-					width: 0;
-					top: 0;
-					bottom: 0;
-					color: white;
-					transition: width 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-					background-color: $color;
-					white-space: nowrap;
-					overflow: hidden;
-				}
-
-				text-decoration: none;
-				border-bottom: 1px dotted $color;
-			}
-		}
-
-		margin-bottom: 0;
-		margin-top: 2rem;
-
-		@include background-handler(link-project, rgb(11, 92, 222));
-		@include background-handler(link-security, rgb(199, 8, 8));
-		@include background-handler(link-article, rgb(154, 16, 219));
-
-		width: fit-content;
-	}
+        a {
+            display: block;
+            margin-bottom: 1ch;
+            font-size: 2rem;
+            color: #7d2dc7;
+            text-decoration: none;
+        }
+    }
 </style>

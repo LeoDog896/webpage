@@ -1,119 +1,14 @@
 body {
-	font-family: 'JetBrains Mono Variable', monospace;
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
-	margin: 0;
-	padding: 0;
-	width: 100%;
-	align-items: center;
-	font-weight: 400;
+    background-color: #0A0F0D;
+    color: #EFEFEF;
+    font-family: 'Inter Variable', sans-serif;
 }
-
-// softer a links
 
 a {
-	color: rgb(99, 0, 124);
-	text-decoration: dotted underline;
+    color: #2892D7;
 }
 
-// code formatting
-
-code {
-	counter-reset: line;
-	background-color: rgb(242, 242, 242);
-	overflow: scroll;
-}
-
-.rehype-code-title + div[data-rehype-pretty-code-fragment] {
-	background-color: rgb(242, 242, 242);
-}
-
-pre > code {
-	padding: 0.5rem 0rem;
-	display: grid;
-	overflow: scroll;
-}
-
-code > [data-line]::before {
-	counter-increment: line;
-	content: counter(line);
-
-	display: inline-block;
-	min-width: 3ch;
-	text-align: center;
-	padding: 0 0.5ch;
-	margin-right: 1rem;
-	color: gray;
-	border-right: 1px solid black;
-}
-
-.rehype-code-title {
-	margin-bottom: -0.9rem;
-	position: relative;
-	padding: 0.5em 0.5em;
-	border-bottom: 1px solid black;
-	font-family: Consolas, 'Andale Mono WT', 'Andale Mono', 'Lucida Console', 'Lucida Sans Typewriter',
-		'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Liberation Mono', 'Nimbus Mono L', Monaco,
-		'Courier New', Courier, monospace;
-}
-
-code[data-line-numbers-max-digits='2'] > .line::before {
-	width: 2rem;
-}
-
-code[data-line-numbers-max-digits='3'] > .line::before {
-	width: 3rem;
-}
-
-// dark mode support
-
-@media (prefers-color-scheme: dark) {
-	body {
-		background-color: rgb(21, 21, 21);
-		color: rgb(242, 242, 242);
-	}
-
-	a {
-		color: rgb(185, 26, 185);
-	}
-
-	.rehype-code-title {
-		border-bottom: 1px solid rgb(242, 242, 242);
-	}
-
-	.rehype-code-title + div[data-rehype-pretty-code-fragment] {
-		background-color: rgb(21, 21, 21);
-	}
-
-	code {
-		background-color: rgb(21, 21, 21);
-	}
-
-	code > .line::before {
-		color: rgb(242, 242, 242);
-		border-right: 1px solid rgb(242, 242, 242);
-	}
-
-	.rehype-code-title {
-		color: rgb(242, 242, 242);
-	}
-
-	.rehype-code-title + div[data-rehype-pretty-code-fragment] {
-		color: rgb(242, 242, 242);
-	}
-}
-
-@media (prefers-color-scheme: dark) {
-	pre[data-theme='light'],
-	code[data-theme='light'] {
-		display: none;
-	}
-}
-
-@media (prefers-color-scheme: light), (prefers-color-scheme: no-preference) {
-	pre[data-theme='dark'],
-	code[data-theme='dark'] {
-		display: none;
-	}
+pre {
+    padding: 1ch;
+    overflow-x: scroll;
 }

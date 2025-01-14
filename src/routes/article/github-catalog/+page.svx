@@ -1,6 +1,6 @@
 ---
 title: Automatic GitHub Catalog Generation
-description: taking advantage of github pages & jekyll for repo cataloging
+description: i will always support free GitHub CI for open source
 emojis: 📖
 date: 2023-04-22
 slug: github-catalog
@@ -8,7 +8,7 @@ type: project
 layout: article
 ---
 
-Some people in GitHub have [automatic committing](https://github.com/iceBear67/iceBear67/commit/916970d6fa4d8d70c227b8303e5036ded150436a) to show various neat metrics on their README. I quite liked these, but didn't have too much of a usefor them.
+Some people in GitHub have [automatic committing](https://github.com/iceBear67/iceBear67/commit/916970d6fa4d8d70c227b8303e5036ded150436a) to show various neat metrics on their README. I quite liked these, but didn't have too much of a use for them.
 
 However, I have [**>400**](https://github.com/LeoDog896?tab=repositories) repositories, and searching through them is quite a pain. I wanted a way to catalog them, and I wanted to do it in a way that was easy to maintain.
 
@@ -99,7 +99,7 @@ looking for my website? go to [https://leodog896.com](https://leodog896.com) ins
 
 > **Note**
 > Forks with more than 1 star are included in this list
-> This is because a few forks are permenant forks of other projects.
+> This is because a few forks are permanent forks of other projects.
 `;
 
 for (const repo of projects) {
@@ -136,7 +136,7 @@ I also added a few extra features, like sorting by star count, and filtering out
 
 ## GitHub Actions
 
-The last step for me was to automate the script. I used GitHub Actions to run the script every day, and commit the changes to the repository. This way, I can just go to my GitHub page and see the latest version of my catalog. The configuration was based off of [lowlighter/metrics](https://github.com/lowlighter/metrics), from the GitHub action my aformentioned README's author used.
+The last step for me was to automate the script. I used GitHub Actions to run the script every day, and commit the changes to the repository. This way, I can just go to my GitHub page and see the latest version of my catalog. The configuration was based off of [lowlighter/metrics](https://github.com/lowlighter/metrics), from the GitHub action my aforementioned README's author used.
 
 ```yaml
 name: Generate Project Catalog
