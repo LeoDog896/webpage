@@ -2,6 +2,10 @@
 	import Treasure, { uuids, hasPrivilege, currentPrivileges, optedOut } from '$lib/Treasure.svelte';
 </script>
 
+<svelte:head>
+    <title>tristan</title>
+</svelte:head>
+
 <h1>hi! i'm <Treasure id="4dbd2da1-0880-4663-bfc7-d3d977b029b2">tristan</Treasure>!</h1>
 
 <p>
