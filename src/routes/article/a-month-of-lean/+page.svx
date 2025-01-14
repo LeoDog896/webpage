@@ -27,7 +27,8 @@ When I was first properly getting started in formalization, I referenced a few t
 ["A Beginner's Companion to Theorem Proving in Lean 4"](https://emallson.net/blog/a-beginners-companion-to-theorem-proving-in-lean/)
 from [J. David Smith](https://emallson.net/). It was succinct, and gave a good clarifying overview of tactics I remember using from <abbr>NNG4</abbr>
 (the Natural Number Game 4) and the Logic Game. However, when I went to upstream proofs, I found that the
-proofs that I was making were factors larger than the existing ones.
+proofs that I was making were factors larger than the existing ones. This explores one of the (many) reasons why my proofs were longer,
+and more clumsy, and a nice and clean way to address that.
 
 ## Breaking Down Goals
 
@@ -36,7 +37,7 @@ There are two main categories as to how you approach formalization:
 - 'Forward' reasoning: Create hypotheses that support your goal.
 - 'Backward' reasoning: Break your goal down to your hypotheses.
 
-While these are also ways that <abbv>ATPs</abbv> (Automated Theorem Provers) work, we'll focus on the stylistic
+While these are also ways that <abbv>ATPs</abbv> (<Treasure id="0d759a70-cf51-4b59-af7b-ecd4a888e949">Automated Theorem Provers</Treasure>) work, we'll focus on the stylistic
 differences between the two, and how `refine` can help.
 
 You can directly see the difference between the two in the ways that goals are reasoned with. For example,
@@ -176,7 +177,8 @@ theorem test {p q : Prop} (hp : p) (hq : q) : (p ∧ p ∧ p ∧ p ∧ p ∧ p) 
 
 There! Isn't that nice?
 
-The actual way I would show this is to explicitly construct it as shown:
+<!-- win for "please trust me" -->
+<Treasure id="3043baf4-432f-4afc-862d-56e8547b4839">The actual way I would show this</Treasure> is to explicitly construct it as shown:
 
 ```lean4
 theorem test {p q : Prop} (hp : p) (hq : q) : (p ∧ p ∧ p ∧ p ∧ p ∧ p) ∧ q :=
@@ -192,10 +194,10 @@ def collatz_next (n : Nat) : Nat :=
 
 def iter (k : Nat) (f : Nat → Nat) :=
   match k with
-  | Nat.zero => fun x => x
-  | Nat.succ k' => fun x => f (iter k' f x)
+  | Nat.zero => (·)
+  | Nat.succ k' => (f <| iter k' f ·)
 
 theorem collatz_and_p {p : Prop} (hp : p) : p ∧ ∀ n, 0 < n → ∃ k, iter k collatz_next n = 1 := by
   refine ⟨hp, ?_⟩
-  sorry -- this joke was blatantly stolen from https://learnxinyminutes.com/lean4/
+  sorry -- this joke was stolen (and slightly modified) from https://learnxinyminutes.com/lean4/
 ```

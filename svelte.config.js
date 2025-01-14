@@ -8,24 +8,31 @@ import { createHighlighter } from 'shiki';
 const config = {
 	// Consult https://svelte.dev/docs/kit/integrations
 	// for more information about preprocessors
-	preprocess: [vitePreprocess(), mdsvex(defineMDSveXConfig({
-		layout: {
-			article: './src/lib/ArticleLayout.svelte',
-		},
-		highlight: {
-			// im not dealing with rehype again.
-			// this is from https://joyofcode.xyz/sveltekit-markdown-blog#syntax-highlighting
-			highlighter: async (code, lang = 'text') => {
-				const highlighter = await createHighlighter({
-					themes: ['vitesse-dark'],
-					langs: ['javascript', 'typescript', 'yaml', 'gdscript', 'lean4']
-				})
-				await highlighter.loadLanguage('javascript', 'typescript', 'yaml', 'gdscript', 'lean4')
-				const html = escapeSvelte(highlighter.codeToHtml(code, { lang, theme: 'vitesse-dark' }))
-				return `{@html \`${html}\` }`
-			}
-		},
-	}))],
+	preprocess: [
+		vitePreprocess(),
+		mdsvex(
+			defineMDSveXConfig({
+				layout: {
+					article: './src/lib/ArticleLayout.svelte'
+				},
+				highlight: {
+					// im not dealing with rehype again.
+					// this is from https://joyofcode.xyz/sveltekit-markdown-blog#syntax-highlighting
+					highlighter: async (code, lang = 'text') => {
+						const highlighter = await createHighlighter({
+							themes: ['vitesse-dark'],
+							langs: ['javascript', 'typescript', 'yaml', 'gdscript', 'lean4']
+						});
+						await highlighter.loadLanguage('javascript', 'typescript', 'yaml', 'gdscript', 'lean4');
+						const html = escapeSvelte(
+							highlighter.codeToHtml(code, { lang, theme: 'vitesse-dark' })
+						);
+						return `{@html \`${html}\` }`;
+					}
+				}
+			})
+		)
+	],
 
 	kit: {
 		// adapter-auto only supports some environments, see https://svelte.dev/docs/kit/adapter-auto for a list.

@@ -1,14 +1,23 @@
 body {
-    background-color: #0A0F0D;
-    color: #EFEFEF;
-    font-family: 'Inter Variable', sans-serif;
+	background-color: #0a0f0d;
+	color: #efefef;
+	font-family: 'Inter Variable', sans-serif;
 }
 
 a {
-    color: #2892D7;
+	color: #2892d7;
 }
 
 pre {
-    padding: 1ch;
-    overflow-x: scroll;
+	padding: 1ch;
+	overflow-x: scroll;
+}
+
+button {
+	background-color: inherit;
+	color: #efefef;
+	border: 1px solid #efefef;
+	padding: 0.5ch 1ch;
+	border-radius: 0;
+	cursor: pointer;
 }
