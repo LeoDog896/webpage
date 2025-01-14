@@ -25,7 +25,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2
         with:
-          version: 8.1.1
+          version: 9.15.3
       - name: Install Dependencies
         run: pnpm install
       - name: Build Project
@@ -40,7 +40,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2
         with:
-          version: 8.1.1
+          version: 9.15.3
       - name: Install Dependencies
         run: pnpm install
       - name: Build Project
