@@ -26,7 +26,7 @@ const config = {
 						});
 						
 						await highlighter.loadLanguage('javascript', 'typescript', 'yaml', 'gdscript', 'lean4');
-						const html = escapeSvelte(
+						const html = `<div class="webbed-codeblock">${escapeSvelte(
 							highlighter.codeToHtml(code, {
 								lang,
 								theme: 'vitesse-dark',
@@ -35,7 +35,7 @@ const config = {
 									transformerNotationFocus()
 								]
 							})
-						);
+						)}</div>`;
 						highlighter.dispose();
 						return `{@html \`${html}\` }`;
 					}

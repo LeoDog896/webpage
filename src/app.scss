@@ -21,6 +21,7 @@ button {
 	border-radius: 0;
 	cursor: pointer;
 }
+
 .shiki code .highlighted {
 	background-color: rgba(101, 117, 133, .16);
 	transition: background-color .5s;
@@ -28,4 +29,17 @@ button {
 	padding: 0 24px;
 	width: calc(100% + 48px);
 	display: inline-block;
+}
+
+.webbed-codeblock {
+	position: relative;
+
+	span.lang {
+		position: absolute;
+		top: 2px;
+		right: 8px;
+		font-size: 0.75rem;
+		opacity: 0.75;
+		user-select: none;
+	}
 }

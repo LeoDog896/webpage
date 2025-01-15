@@ -69,19 +69,24 @@
 
 	let hasJustBeenClicked = $state(false);
 	let hasBeenClicked = $derived($uuids.includes(id) || $optedOut);
+
+	let clickX = $state(0);
+	let clickY = $state(0);
 </script>
 
 <button
 	class={[{ accent: !hasBeenClicked }]}
-	onclick={() => {
+	onclick={event => {
 		$uuids = [...$uuids, id];
 		hasJustBeenClicked = true;
+		clickX = event.clientX + window.scrollX;
+		clickY = event.clientY + window.scrollY;
 	}}
 	disabled={hasBeenClicked}
 	tabindex={hasBeenClicked ? -1 : 0}
 >
 	<slot />
-	<div class="confetti">
+	<div class="confetti" style:top={`${clickY}px`} style:left={`${clickX}px`}>
 		{#if hasJustBeenClicked}
 			<Confetti
 				y={[-0.5, 0.5]}
@@ -106,7 +111,6 @@
 		color: inherit;
 		display: inline;
 		padding: 0;
-		position: relative;
 
 		&.accent {
 			color: oklch(76.75% 0.1515 65.49);
@@ -121,8 +125,6 @@
 
 	.confetti {
 		position: absolute;
-		top: 50%;
-		left: 50%;
 		transform: translate(-50%, -50%);
 	}
 </style>
