@@ -48,7 +48,7 @@
 		{ id: 'annoyances', value: 10, title: 'View Annoyances' }
 	] as const satisfies Privilege[];
 
-	type PrivilegeId = (typeof privileges)[number]['id'];
+	export type PrivilegeId = (typeof privileges)[number]['id'];
 
 	export function hasPrivilege(privileges: Privilege[], id: PrivilegeId): boolean {
 		if (get(optedOut)) return true;

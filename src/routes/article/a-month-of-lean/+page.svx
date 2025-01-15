@@ -77,9 +77,9 @@ lemma without_digits {n : ℕ} (hn : ProblemPredicate n) : ∃ c : ℕ, ProblemP
     contradiction
   · rw [ProblemPredicate, digits_def' (by decide : 2 ≤ 10) n.succ_pos, List.headI, List.tail_cons,
       List.concat_eq_append] at hn
-    constructor
-    · rw [← hn.left, div_add_mod (n + 1) 10]
-    · rw [← hn.right, ofDigits_append, ofDigits_digits, ofDigits_singleton, add_comm, mul_comm]
+    constructor // [!code highlight]
+    · rw [← hn.left, div_add_mod (n + 1) 10] // [!code highlight]
+    · rw [← hn.right, ofDigits_append, ofDigits_digits, ofDigits_singleton, add_comm, mul_comm] // [!code highlight]
 ```
 
 The explicit use of `constructor` here (which is a tactic that applies the first matching inductive constructor)
@@ -94,10 +94,10 @@ lemma without_digits {n : ℕ} (hn : ProblemPredicate n) : ∃ c : ℕ, ProblemP
     contradiction
   · rw [ProblemPredicate, digits_def' (by decide : 2 ≤ 10) n.succ_pos, List.headI, List.tail_cons,
       List.concat_eq_append] at hn
-    exact ⟨
-      by rw [← hn.left, div_add_mod (n + 1) 10],
-      by rw [← hn.right, ofDigits_append, ofDigits_digits, ofDigits_singleton, add_comm, mul_comm]
-    ⟩
+    exact ⟨ // [!code highlight]
+      by rw [← hn.left, div_add_mod (n + 1) 10], // [!code highlight]
+      by rw [← hn.right, ofDigits_append, ofDigits_digits, ofDigits_singleton, add_comm, mul_comm] // [!code highlight]
+    ⟩ // [!code highlight]
 ```
 
 While this is quite similar, the use of `by` (which enters tactic mode inside the anonymous constructor subexpressions)

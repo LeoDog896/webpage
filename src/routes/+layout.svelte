@@ -3,9 +3,13 @@
 	import '../app.scss';
 	import Footer from '$lib/Footer.svelte';
 	import { onMount } from 'svelte';
-	import { uuidSet } from '$lib/Treasure.svelte';
+	import { uuids, uuidSet } from '$lib/Treasure.svelte';
 
 	onMount(() => {
+		(window as unknown as any)['giveUp'] = () => {
+			uuids.set([]);
+		};
+
 		let subscriber: (() => void) | null = null;
 		subscriber = uuidSet.subscribe((value) => {
 			if (value.size > 0) {
@@ -13,6 +17,8 @@
 				console.log('i do try to make sure that the Big Orange Link-Buttons are quite obvious.');
 				console.log("honestly if anything you can just tab them. i didn't remove the tab index");
 				console.log('also?? there is an opt out button??? ??????');
+				console.log()
+				console.log('also, if you want to reset your progress, you can use the global `giveUp` function!')
 				subscriber?.();
 			}
 		});

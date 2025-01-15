@@ -3,6 +3,7 @@ import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { defineMDSveXConfig } from 'mdsvex';
 import { createHighlighter } from 'shiki';
+import { transformerNotationFocus, transformerNotationHighlight } from '@shikijs/transformers';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -23,10 +24,19 @@ const config = {
 							themes: ['vitesse-dark'],
 							langs: ['javascript', 'typescript', 'yaml', 'gdscript', 'lean4']
 						});
+						
 						await highlighter.loadLanguage('javascript', 'typescript', 'yaml', 'gdscript', 'lean4');
 						const html = escapeSvelte(
-							highlighter.codeToHtml(code, { lang, theme: 'vitesse-dark' })
+							highlighter.codeToHtml(code, {
+								lang,
+								theme: 'vitesse-dark',
+								transformers: [
+									transformerNotationHighlight(),
+									transformerNotationFocus()
+								]
+							})
 						);
+						highlighter.dispose();
 						return `{@html \`${html}\` }`;
 					}
 				}

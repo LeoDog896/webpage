@@ -1,4 +1,5 @@
 <script lang="ts">
+	import PrivilegeReveal from "$lib/PrivilegeReveal.svelte";
 	import Treasure, { uuids, hasPrivilege, currentPrivileges, optedOut } from '$lib/Treasure.svelte';
 </script>
 
@@ -17,7 +18,7 @@
 	or published in one of my repositories that specifies a license.
 </p>
 
-{#if hasPrivilege($currentPrivileges, 'info')}
+<PrivilegeReveal id="info">
     <h2>bounties</h2>
 
     <p>
@@ -69,7 +70,7 @@
 	<ul>
 		<li><a href="https://github.com/LeoDog896">GitHub</a></li>
 	</ul>
-{/if}
+</PrivilegeReveal>
 
 <h2>featured post</h2>
 
@@ -92,7 +93,7 @@
 	</p>
 {/if}
 
-{#if hasPrivilege($currentPrivileges, 'technicalPosts')}
+<PrivilegeReveal id="technicalPosts">
 	<h2>
 		all{#if !hasPrivilege($currentPrivileges, 'allPosts')}<span
 				class="info"
@@ -118,7 +119,7 @@
 			<a href="/article/godot-jigsaw">Making a Jigsaw Puzzle in Godot</a>
 		</div>
 	</div>
-{/if}
+</PrivilegeReveal>
 
 <style lang="scss">
 	.post {
